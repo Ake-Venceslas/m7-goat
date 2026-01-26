@@ -3,12 +3,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Truck, ArrowUpRight, Star } from "lucide-react";
+import { useLanguage } from "@/src/context/LanguageContext";
 
 const HeaderComponents = () => {
+  const { t } = useLanguage();
   return (
     <section className="w-full">
       {/* Hero Section */}
-      <div className="relative bg-[#f5e6e0] overflow-hidden">
+      <div className="relative bg-white overflow-hidden">
         {/* Decorative Circles */}
         <div className="absolute top-10 right-20 w-64 h-64 bg-[#e8d4ce] rounded-full opacity-70" />
         <div className="absolute -top-20 right-60 w-40 h-40 bg-[#e8d4ce] rounded-full opacity-50" />
@@ -23,22 +25,20 @@ const HeaderComponents = () => {
                   <Truck size={18} className="text-gray-700" />
                 </div>
                 <span className="text-sm font-medium tracking-wide text-gray-700">
-                  FREE DELIVERY WORLDWIDE
+                  {t("freeDelivery")}
                 </span>
               </div>
 
               {/* Main Heading */}
               <h1 className="text-5xl md:text-6xl font-serif font-medium text-gray-900 leading-tight mb-6">
-                Love Your Skin,
+                {t("heroTitle1")}
                 <br />
-                Every Day
+                {t("heroTitle2")}
               </h1>
 
               {/* Description */}
               <p className="text-gray-600 text-base leading-relaxed mb-8 max-w-md">
-                Elevate Your Glow with Clean, Science-Backed Skincare—
-                Cruelty-Free, Sustainable, and Packed with Antioxidants
-                for Skin That Looks Healthy at Every Age.
+                {t("heroDescription")}
               </p>
 
               {/* CTA Buttons */}
@@ -47,14 +47,14 @@ const HeaderComponents = () => {
                   href="/order"
                   className="inline-flex items-center gap-2 bg-gray-900 text-white px-8 py-4 rounded-full hover:bg-gray-800 transition-colors"
                 >
-                  Order Now
+                  {t("orderNow")}
                   <ArrowUpRight size={18} />
                 </Link>
                 <Link
                   href="/about"
                   className="text-gray-700 font-medium hover:text-gray-900 transition-colors"
                 >
-                  Find Out More
+                  {t("findOutMore")}
                 </Link>
               </div>
             </div>
@@ -81,9 +81,7 @@ const HeaderComponents = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             {/* Trust Text */}
             <h2 className="text-xl md:text-2xl font-semibold text-gray-900">
-              Trusted by over 10,000+ clients
-              <br />
-              worldwide since 2018.
+              {t("trustedBy")}
             </h2>
 
             {/* Stats */}
@@ -100,16 +98,14 @@ const HeaderComponents = () => {
                     />
                   ))}
                 </div>
-                <div className="text-sm text-gray-600">3,500 ratings</div>
+                <div className="text-sm text-gray-600">3,500 {t("ratings")}</div>
               </div>
 
               {/* Products Sold */}
               <div className="text-center">
                 <div className="text-4xl font-bold text-gray-900">1M</div>
                 <div className="text-sm text-gray-600">
-                  Worldwide products
-                  <br />
-                  sold per year.
+                  {t("worldwideProducts")}
                 </div>
               </div>
             </div>

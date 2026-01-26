@@ -2,8 +2,11 @@
 
 import Link from "next/link";
 import { User, Sparkles } from "lucide-react";
+import { useLanguage } from "@/src/context/LanguageContext";
 
 const AboutPage = () => {
+  const { t } = useLanguage();
+
   const services = [
     { name: "Aromatherapy", icon: "✨" },
     { name: "Hydrotherapy", icon: "✨" },
@@ -21,14 +24,14 @@ const AboutPage = () => {
       <div className="bg-[#3d6b59] py-16">
         <div className="max-w-7xl mx-auto px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-serif text-white mb-4">
-            About Us
+            {t("aboutUsTitle")}
           </h1>
           <div className="flex items-center justify-center gap-2 text-white/80 text-sm">
             <Link href="/" className="hover:text-white transition-colors">
-              Home
+              {t("home")}
             </Link>
             <span>»</span>
-            <span>About Us</span>
+            <span>{t("aboutUsTitle")}</span>
           </div>
         </div>
       </div>
@@ -50,9 +53,7 @@ const AboutPage = () => {
             {/* Right - Content */}
             <div>
               <h2 className="text-3xl md:text-4xl font-serif text-gray-900 mb-6">
-                Founder's Vision Illuminating
-                <br />
-                Beauty at Glower Glow
+                {t("founderVision")}
               </h2>
 
               <p className="text-gray-600 leading-relaxed mb-4">
@@ -75,7 +76,7 @@ const AboutPage = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Emma Sterling</h4>
-                  <p className="text-sm text-gray-500">Ceo and founder</p>
+                  <p className="text-sm text-gray-500">{t("ceoFounder")}</p>
                 </div>
               </div>
             </div>
@@ -87,16 +88,16 @@ const AboutPage = () => {
       <div className="bg-[#3d3d3d] py-6">
         <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white text-center md:text-left">
-            <span className="font-serif italic">Questions ?</span>
+            <span className="font-serif italic">{t("questions")}</span>
             <span className="text-white/80 ml-2">
-              Our experts will help find the gear that's right for you
+              {t("expertsHelp")}
             </span>
           </p>
           <Link
             href="/contact"
             className="border border-white text-white px-6 py-2 rounded hover:bg-white hover:text-gray-900 transition-colors"
           >
-            Get In Touch
+            {t("getInTouch")}
           </Link>
         </div>
       </div>
@@ -108,9 +109,7 @@ const AboutPage = () => {
             {/* Left - Content */}
             <div>
               <h2 className="text-3xl md:text-4xl font-serif italic text-gray-900 mb-6">
-                Illuminate Beauty Timeless
-                <br />
-                Confidence.
+                {t("illuminateBeauty")}
               </h2>
 
               <p className="text-gray-600 leading-relaxed mb-8">
@@ -134,7 +133,7 @@ const AboutPage = () => {
                 href="/products"
                 className="inline-block border border-gray-900 text-gray-900 px-6 py-3 hover:bg-gray-900 hover:text-white transition-colors"
               >
-                READ MORE
+                {t("readMore")}
               </Link>
             </div>
 

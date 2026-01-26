@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Heart, ShoppingBag, ChevronLeft, ChevronRight } from "lucide-react";
+import { useLanguage } from "@/src/context/LanguageContext";
 
 interface Product {
   id: number;
@@ -39,6 +40,7 @@ const products: Product[] = [
 
 const ProductComponents = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { t } = useLanguage();
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev > 0 ? prev - 1 : prev));
@@ -54,13 +56,13 @@ const ProductComponents = () => {
         {/* Section Header */}
         <div className="flex items-center justify-between mb-12">
           <h2 className="text-4xl md:text-5xl font-serif font-medium text-gray-900">
-            Our Best Sellers
+            {t("ourBestSellers")}
           </h2>
           <Link
             href="/products"
             className="text-sm text-gray-700 hover:text-gray-900 transition-colors"
           >
-            See All
+            {t("seeAll")}
           </Link>
         </div>
 
@@ -105,7 +107,7 @@ const ProductComponents = () => {
 
                 {/* Add to Cart Button */}
                 <button className="flex items-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-colors mt-auto">
-                  Add
+                  {t("add")}
                   <ShoppingBag size={16} />
                 </button>
               </div>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Star, ChevronRight, User } from "lucide-react";
+import { useLanguage } from "@/src/context/LanguageContext";
 
 interface Review {
   id: number;
@@ -36,6 +37,7 @@ const reviews: Review[] = [
 
 const ReviewComponents = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { t } = useLanguage();
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % reviews.length);
@@ -60,7 +62,7 @@ const ReviewComponents = () => {
       <div className="max-w-7xl mx-auto px-8">
         {/* Section Heading */}
         <h2 className="text-4xl md:text-5xl font-serif font-medium text-gray-900 text-center mb-16">
-          What our customers have to say...
+          {t("whatCustomersSay")}
         </h2>
 
         {/* Reviews Grid */}

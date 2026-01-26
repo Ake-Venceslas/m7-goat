@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Calendar, User, ArrowRight, Search } from "lucide-react";
+import { useLanguage } from "@/src/context/LanguageContext";
 
 interface BlogPost {
   id: number;
@@ -112,6 +113,7 @@ const categories = [
 ];
 
 const BlogPage = () => {
+  const { t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -132,18 +134,17 @@ const BlogPage = () => {
       <div className="bg-[#3d6b59] py-16">
         <div className="max-w-7xl mx-auto px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-serif text-white mb-4">
-            Beauty Blog
+            {t("beautyBlog")}
           </h1>
           <p className="text-white/80 max-w-xl mx-auto mb-6">
-            Discover skincare tips, beauty trends, and expert advice to help you
-            achieve your healthiest, most radiant skin.
+            {t("blogDescription")}
           </p>
           <div className="flex items-center justify-center gap-2 text-white/80 text-sm">
             <Link href="/" className="hover:text-white transition-colors">
-              Home
+              {t("home")}
             </Link>
             <span>»</span>
-            <span>Blog</span>
+            <span>{t("blogs")}</span>
           </div>
         </div>
       </div>
@@ -152,7 +153,7 @@ const BlogPage = () => {
       <section className="bg-[#f5e6e0] py-12">
         <div className="max-w-7xl mx-auto px-8">
           <h2 className="text-2xl font-serif text-gray-900 mb-8">
-            Featured Articles
+            {t("featuredArticles")}
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             {featuredPosts.map((post) => (
@@ -213,7 +214,7 @@ const BlogPage = () => {
               />
               <input
                 type="text"
-                placeholder="Search articles..."
+                placeholder={t("searchArticles")}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-11 pr-4 py-3 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#3d6b59] focus:border-transparent"
@@ -290,7 +291,7 @@ const BlogPage = () => {
           {filteredPosts.length > 0 && (
             <div className="flex justify-center mt-12">
               <button className="border border-gray-900 text-gray-900 px-8 py-3 rounded-full hover:bg-gray-900 hover:text-white transition-colors">
-                Load More Articles
+                {t("loadMoreArticles")}
               </button>
             </div>
           )}
@@ -299,7 +300,7 @@ const BlogPage = () => {
           {filteredPosts.length === 0 && (
             <div className="text-center py-12">
               <p className="text-gray-500">
-                No articles found. Try a different search or category.
+                {t("noArticlesFound")}
               </p>
             </div>
           )}

@@ -2,14 +2,17 @@
 
 import Link from "next/link";
 import { ArrowUpRight, Sparkles, ClipboardCheck, CircleDot, Leaf } from "lucide-react";
+import { useLanguage } from "@/src/context/LanguageContext";
 
 const HeroComponents = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="w-full bg-white py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-8">
         {/* Section Heading */}
         <h2 className="text-4xl md:text-5xl font-serif font-medium text-gray-900 leading-tight mb-16 max-w-2xl">
-          Why Our Skincare is Good for You – And Your Skin
+          {t("whyTitle")}
         </h2>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -42,11 +45,10 @@ const HeroComponents = () => {
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900 mb-2">
-                  Clean, Science-Backed Formulas
+                  {t("cleanFormulas")}
                 </h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Every product is crafted with clinically proven ingredients that
-                  deliver real results.
+                  {t("cleanFormulasDesc")}
                 </p>
               </div>
             </div>
@@ -60,12 +62,10 @@ const HeroComponents = () => {
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900 mb-2">
-                  Dermatologist-Tested & Skin-Loving
+                  {t("dermatologistTested")}
                 </h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Whether you have sensitive, acne-prone, or mature skin, our
-                  products are designed to soothe irritation, balance oil
-                  production, and protect and repair.
+                  {t("dermatologistTestedDesc")}
                 </p>
               </div>
             </div>
@@ -79,7 +79,7 @@ const HeroComponents = () => {
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900 mb-2">
-                  Visible Results You Can Trust
+                  {t("visibleResults")}
                 </h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
                   "My acne scars faded in weeks!" – Jane Evans
@@ -99,15 +99,15 @@ const HeroComponents = () => {
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900 mb-2">
-                  Good for Your Skin, Good for the Planet
+                  {t("goodForPlanet")}
                 </h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
                   <span className="inline-flex items-center gap-1">
-                    ♻️ Recyclable packaging
+                    ♻️ {t("recyclablePackaging")}
                   </span>
                   <br />
                   <span className="inline-flex items-center gap-1">
-                    🌱 Vegan & cruelty-free – Certified by Leaping Bunny
+                    🌱 {t("veganCrueltyFree")}
                   </span>
                 </p>
               </div>
@@ -121,7 +121,7 @@ const HeroComponents = () => {
             href="/order"
             className="inline-flex items-center gap-2 bg-gray-900 text-white px-10 py-4 rounded-full hover:bg-gray-800 transition-colors"
           >
-            Order Now
+            {t("orderNow")}
             <ArrowUpRight size={18} />
           </Link>
         </div>

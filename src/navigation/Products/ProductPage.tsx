@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Heart, ShoppingBag, SlidersHorizontal, ChevronDown } from "lucide-react";
+import { useLanguage } from "@/src/context/LanguageContext";
 
 interface Product {
   id: number;
@@ -162,6 +163,7 @@ const categories = [
 ];
 
 const ProductPage = () => {
+  const { t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortBy, setSortBy] = useState("Featured");
 
@@ -176,14 +178,14 @@ const ProductPage = () => {
       <div className="bg-[#3d6b59] py-16">
         <div className="max-w-7xl mx-auto px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-serif text-white mb-4">
-            All Products
+            {t("allProducts")}
           </h1>
           <div className="flex items-center justify-center gap-2 text-white/80 text-sm">
             <Link href="/" className="hover:text-white transition-colors">
-              Home
+              {t("home")}
             </Link>
             <span>»</span>
-            <span>All Products</span>
+            <span>{t("allProducts")}</span>
           </div>
         </div>
       </div>
@@ -291,7 +293,7 @@ const ProductPage = () => {
 
                     {/* Add to Cart Button */}
                     <button className="flex items-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-full hover:bg-[#3d6b59] transition-colors text-sm">
-                      Add
+                      {t("add")}
                       <ShoppingBag size={14} />
                     </button>
                   </div>
@@ -303,7 +305,7 @@ const ProductPage = () => {
           {/* Load More */}
           <div className="flex justify-center mt-12">
             <button className="border border-gray-900 text-gray-900 px-8 py-3 rounded-full hover:bg-gray-900 hover:text-white transition-colors">
-              Load More Products
+              {t("loadMore")}
             </button>
           </div>
         </div>

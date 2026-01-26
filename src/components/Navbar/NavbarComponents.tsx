@@ -3,7 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Home, User, ShoppingBag, Search, X, MessageSquare, BookOpen } from "lucide-react";
+import { Home, User, ShoppingBag, Search, X, MessageSquare, BookOpen, Globe } from "lucide-react";
+import { useLanguage } from "@/src/context/LanguageContext";
 
 const products = [
   { id: 1, name: "The Glow Revival Set", category: "Sets" },
@@ -16,22 +17,25 @@ const products = [
   { id: 8, name: "Rose Petal Toner", category: "Toners" },
 ];
 
-const mobileNavItems = [
-  { href: "/", icon: Home, label: "Home" },
-  { href: "/about", icon: User, label: "About" },
-  { href: "/products", icon: ShoppingBag, label: "Products" },
-  { href: "/reviews", icon: MessageSquare, label: "Reviews" },
-  { href: "/blog", icon: BookOpen, label: "Blog" },
-];
-
 const NavbarComponents = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<typeof products>([]);
+  const [isLangOpen, setIsLangOpen] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
+  const langRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const pathname = usePathname();
+  const { language, setLanguage, t } = useLanguage();
+
+  const mobileNavItems = [
+    { href: "/", icon: Home, label: t("home") },
+    { href: "/about", icon: User, label: t("about") },
+    { href: "/products", icon: ShoppingBag, label: t("products") },
+    { href: "/reviews", icon: MessageSquare, label: t("reviews") },
+    { href: "/blog", icon: BookOpen, label: t("blogs") },
+  ];
 
   useEffect(() => {
     if (searchQuery.trim()) {
@@ -58,6 +62,9 @@ const NavbarComponents = () => {
         setIsSearchOpen(false);
         setSearchQuery("");
       }
+      if (langRef.current && !langRef.current.contains(event.target as Node)) {
+        setIsLangOpen(false);
+      }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -80,7 +87,7 @@ const NavbarComponents = () => {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="text-xl font-semibold tracking-wide text-gray-900">
-            ZIVERA
+            M7 GOAT
           </Link>
 
           {/* Navigation Links - Hidden on mobile */}
@@ -89,36 +96,82 @@ const NavbarComponents = () => {
               href="/"
               className="text-sm text-gray-700 hover:text-gray-900 transition-colors"
             >
-              Home
+              {t("home")}
             </Link>
             <Link
               href="/about"
               className="text-sm text-gray-700 hover:text-gray-900 transition-colors"
             >
-              About
+              {t("about")}
             </Link>
             <Link
               href="/products"
               className="text-sm text-gray-700 hover:text-gray-900 transition-colors"
             >
-              All Products
+              {t("allProducts")}
             </Link>
             <Link
               href="/reviews"
               className="text-sm text-gray-700 hover:text-gray-900 transition-colors"
             >
-              Reviews
+              {t("reviews")}
             </Link>
             <Link
               href="/blog"
               className="text-sm text-gray-700 hover:text-gray-900 transition-colors"
             >
-              Blogs
+              {t("blogs")}
             </Link>
           </div>
 
           {/* Right Side - Icons and Login */}
           <div className="flex items-center gap-5">
+            {/* Language Switcher */}
+            <div className="relative" ref={langRef}>
+              <button
+                onClick={() => setIsLangOpen(!isLangOpen)}
+                className="flex items-center gap-1.5 text-gray-700 hover:text-gray-900 transition-colors px-2 py-1 rounded-full hover:bg-white/50"
+              >
+                <Globe size={18} />
+                <span className="text-xs font-medium uppercase">{language}</span>
+              </button>
+
+              {/* Language Dropdown */}
+              {isLangOpen && (
+                <div className="absolute right-0 top-full mt-2 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden z-50 min-w-[140px]">
+                  <button
+                    onClick={() => {
+                      setLanguage("en");
+                      setIsLangOpen(false);
+                    }}
+                    className={`w-full flex items-center gap-3 px-4 py-3 text-sm transition-colors ${
+                      language === "en"
+                        ? "bg-[#3d6b59] text-white"
+                        : "text-gray-700 hover:bg-gray-50"
+                    }`}
+                  >
+                    <span className="text-base">🇬🇧</span>
+                    <span>English</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setLanguage("fr");
+                      setIsLangOpen(false);
+                    }}
+                    className={`w-full flex items-center gap-3 px-4 py-3 text-sm transition-colors ${
+                      language === "fr"
+                        ? "bg-[#3d6b59] text-white"
+                        : "text-gray-700 hover:bg-gray-50"
+                    }`}
+                  >
+                    <span className="text-base">🇫🇷</span>
+                    <span>Français</span>
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* Search */}
             <div className="relative" ref={searchRef}>
               <button
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
@@ -139,7 +192,7 @@ const NavbarComponents = () => {
                       <input
                         ref={inputRef}
                         type="text"
-                        placeholder="Search products..."
+                        placeholder={t("searchProducts")}
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         className="w-full pl-11 pr-4 py-3 bg-gray-50 rounded-full focus:outline-none focus:ring-2 focus:ring-[#3d6b59] text-sm"
@@ -177,7 +230,7 @@ const NavbarComponents = () => {
                   {/* No Results */}
                   {searchQuery && searchResults.length === 0 && (
                     <div className="border-t border-gray-100 px-4 py-6 text-center">
-                      <p className="text-sm text-gray-500">No products found</p>
+                      <p className="text-sm text-gray-500">{t("noProductsFound")}</p>
                       <Link
                         href="/products"
                         onClick={() => {
@@ -186,7 +239,7 @@ const NavbarComponents = () => {
                         }}
                         className="text-sm text-[#3d6b59] font-medium mt-2 inline-block hover:underline"
                       >
-                        View all products
+                        {t("viewAllProducts")}
                       </Link>
                     </div>
                   )}
@@ -194,7 +247,7 @@ const NavbarComponents = () => {
                   {/* Quick Links */}
                   {!searchQuery && (
                     <div className="border-t border-gray-100 px-4 py-3">
-                      <p className="text-xs text-gray-400 mb-2">Popular searches</p>
+                      <p className="text-xs text-gray-400 mb-2">{t("popularSearches")}</p>
                       <div className="flex flex-wrap gap-2">
                         {["Serum", "Moisturizer", "Cleanser"].map((term) => (
                           <button
