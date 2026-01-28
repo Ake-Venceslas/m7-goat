@@ -12,8 +12,8 @@ const HeaderComponents = () => {
       {/* Hero Section */}
       <div className="relative bg-white overflow-hidden">
         {/* Decorative Circles */}
-        <div className="absolute top-10 right-20 w-64 h-64 bg-[#e8d4ce] rounded-full opacity-70" />
-        <div className="absolute -top-20 right-60 w-40 h-40 bg-[#e8d4ce] rounded-full opacity-50" />
+        <div className="absolute top-10 right-20 w-64 h-64 bg-[#3d6b59] rounded-full opacity-70" />
+        <div className="absolute -top-20 right-60 w-40 h-40 bg-[#3d6b59] rounded-full opacity-50" />
 
         <div className="max-w-7xl mx-auto px-8 py-16 md:py-24">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -58,17 +58,18 @@ const HeaderComponents = () => {
                 </Link>
               </div>
             </div>
-
             {/* Right Content - Product Image */}
             <div className="relative z-10 flex justify-center">
               <div className="relative">
-                {/* Wooden Platform with Products - Placeholder */}
-                <div className="w-80 h-80 md:w-96 md:h-96 bg-gradient-to-b from-[#d4a574] to-[#c49a6c] rounded-full flex items-end justify-center">
-                  <div className="text-center text-white/80 pb-8">
-                    <p className="text-sm">Product Image</p>
-                    <p className="text-xs">Add your image in /public</p>
-                  </div>
-                </div>
+                {/* Wooden Platform with Products */}
+                <Image
+                  src="/exo.jpeg"
+                  alt="Product Image"
+                  width={300}
+                  height={300}
+                  className="object-contain max-h-full"
+                  priority
+                />
               </div>
             </div>
           </div>

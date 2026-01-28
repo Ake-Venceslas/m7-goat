@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight, Sparkles, ClipboardCheck, CircleDot, Leaf } from "lucide-react";
 import { useLanguage } from "@/src/context/LanguageContext";
 
@@ -23,15 +24,17 @@ const HeroComponents = () => {
             <div className="absolute top-20 right-10 w-16 h-16 bg-[#f5e6e0] rounded-full opacity-50" />
             <div className="absolute -bottom-4 left-20 w-12 h-12 bg-[#f5e6e0] rounded-full opacity-60" />
 
-            {/* Wooden Platform with Products - Placeholder */}
+            {/* Wooden Platform with Products */}
             <div className="relative z-10 flex justify-center">
-              <div className="w-80 h-72 md:w-96 md:h-80 bg-gradient-to-b from-[#8b5a3c] to-[#6d4532] rounded-t-full rounded-b-3xl flex items-center justify-center">
-                <div className="text-center text-white/80">
-                  <p className="text-sm">Product Image</p>
-                  <p className="text-xs">Add your image in /public</p>
-                </div>
+                <Image
+                  src="/exo 2.jpeg"
+                  alt="Product Image"
+                  width={350}
+                  height={300}
+                  className="object-contain"
+                  priority
+                />
               </div>
-            </div>
           </div>
 
           {/* Right Content - Features */}
