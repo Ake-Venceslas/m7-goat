@@ -9,7 +9,6 @@ interface Product {
   id: number;
   name: string;
   description: string;
-  originalPrice: number;
   salePrice: number;
   image?: string;
 }
@@ -19,21 +18,18 @@ const products: Product[] = [
     id: 1,
     name: "The Glow Revival Set",
     description: "Hydrate & Brighten for Dewy, Radiant Skin",
-    originalPrice: 25,
     salePrice: 20.99,
   },
   {
     id: 2,
     name: "Blemish Rescue System",
     description: "Clear Breakouts & Soothe Angry Skin",
-    originalPrice: 25,
     salePrice: 21.99,
   },
   {
     id: 3,
     name: "Age-Defy Overnight Kit",
     description: "Hydrate & Brighten for Dewy, Radiant Skin",
-    originalPrice: 25,
     salePrice: 20.99,
   },
 ];
@@ -72,10 +68,6 @@ const ProductComponents = () => {
             <div key={product.id} className="group">
               {/* Product Image */}
               <div className="relative bg-[#f5e6e0] rounded-2xl aspect-square mb-4 overflow-hidden">
-                {/* Wishlist Button */}
-                <button className="absolute top-4 right-4 z-10 text-gray-600 hover:text-gray-900 transition-colors">
-                  <Heart size={24} />
-                </button>
 
                 {/* Placeholder for product image */}
                 <div className="w-full h-full flex items-center justify-center text-gray-400">
@@ -95,19 +87,14 @@ const ProductComponents = () => {
                   <p className="text-sm text-gray-500 mb-2">
                     {product.description}
                   </p>
-                  <div className="flex items-center gap-2">
-                    <span className="text-gray-400 line-through text-sm">
-                      ${product.originalPrice}
-                    </span>
-                    <span className="font-semibold text-gray-900">
-                      ${product.salePrice}
-                    </span>
-                  </div>
+                  <span className="font-semibold text-gray-900">
+                    ${product.salePrice}
+                  </span>
                 </div>
 
                 {/* Add to Cart Button */}
                 <button className="flex items-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-colors mt-auto">
-                  {t("add")}
+                  Commander
                   <ShoppingBag size={16} />
                 </button>
               </div>

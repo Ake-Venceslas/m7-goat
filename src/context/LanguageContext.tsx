@@ -98,6 +98,7 @@ export const translations: Translations = {
   priceLowHigh: { en: "Price: Low to High", fr: "Prix: Croissant" },
   priceHighLow: { en: "Price: High to Low", fr: "Prix: Décroissant" },
   newest: { en: "Newest", fr: "Plus récent" },
+  order: { en: "Order", fr: "Commander" },
 
   // Categories
   all: { en: "All", fr: "Tout" },

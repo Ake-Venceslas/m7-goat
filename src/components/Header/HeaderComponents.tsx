@@ -44,7 +44,7 @@ const HeaderComponents = () => {
               {/* CTA Buttons */}
               <div className="flex items-center gap-6">
                 <Link
-                  href="/order"
+                  href="/products"
                   className="inline-flex items-center gap-2 bg-gray-900 text-white px-8 py-4 rounded-full hover:bg-gray-800 transition-colors"
                 >
                   {t("orderNow")}

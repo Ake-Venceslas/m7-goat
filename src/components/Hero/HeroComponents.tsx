@@ -118,7 +118,7 @@ const HeroComponents = () => {
         {/* Order Now Button */}
         <div className="flex justify-center mt-16">
           <Link
-            href="/order"
+            href="/products"
             className="inline-flex items-center gap-2 bg-gray-900 text-white px-10 py-4 rounded-full hover:bg-gray-800 transition-colors"
           >
             {t("orderNow")}
