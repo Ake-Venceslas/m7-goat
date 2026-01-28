@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Heart, ShoppingBag, SlidersHorizontal, ChevronDown } from "lucide-react";
+import Image from "next/image";
+import { ShoppingBag, SlidersHorizontal, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/src/context/LanguageContext";
 
 interface Product {
   id: number;
   name: string;
   description: string;
-  originalPrice: number;
   salePrice: number;
   category: string;
   image?: string;
@@ -18,148 +18,144 @@ interface Product {
 const products: Product[] = [
   {
     id: 1,
-    name: "The Glow Revival Set",
-    description: "Hydrate & Brighten for Dewy, Radiant Skin",
-    originalPrice: 25,
-    salePrice: 20.99,
-    category: "Sets",
+    name: "Creme",
+    description: "Le secret d'une douceur infinie. Une texture fondante qui infuse l'hydratation au coeur de la fibre pour des cheveux souples, dociles et sans frisottis",
+    salePrice: 6000,
+    category: "Cremes Capillaires",
+    image: "/Creme.jpeg",
   },
   {
     id: 2,
-    name: "Blemish Rescue System",
-    description: "Clear Breakouts & Soothe Angry Skin",
-    originalPrice: 25,
-    salePrice: 21.99,
-    category: "Treatment",
+    name: "Dermaroleur",
+    description: "Une technologie de micro - aiguilles concue pour activer la microcirculation et ouvrir les pores",
+    salePrice: 10000,
+    category: "Accessories Capillaires",
+    image: "/dermaroleur.jpeg",
   },
   {
     id: 3,
-    name: "Age-Defy Overnight Kit",
-    description: "Hydrate & Brighten for Dewy, Radiant Skin",
-    originalPrice: 25,
-    salePrice: 20.99,
-    category: "Sets",
+    name: "Mini Elixir",
+    description: "Reveillez votre potentiel capillaire. Une formule concentree qui stimule la racine pour une croissance visiblement plus forte et dense",
+    salePrice: 5000,
+    category: "Huiles & Serums Capillaires",
+    image: "/elixir 5k.jpeg",
   },
   {
     id: 4,
-    name: "Vitamin C Brightening Serum",
-    description: "Powerful antioxidant for radiant skin",
-    originalPrice: 35,
-    salePrice: 29.99,
-    category: "Serums",
+    name: "Maxi Elixir",
+    description: "Reveillez votre potentiel capillaire. Une formule concentree qui stimule la racine pour une croissance visiblement plus forte et dense",
+    salePrice: 8000,
+    category: "Huiles & Serums Capillaires",
+    image: "/elixir 8k.jpeg",
   },
   {
     id: 5,
-    name: "Hyaluronic Acid Moisturizer",
-    description: "Deep hydration for plump, smooth skin",
-    originalPrice: 40,
-    salePrice: 34.99,
-    category: "Moisturizers",
+    name: "Elixir & Creme",
+    description: "L'excellence du soin M7 GOAT en coffret. Des combinaisons strategiques concues pour repondre a toutes vous problemes capillaires avec une efficacite renforcee. La solution complete pour une chevelure d'exception",
+    salePrice: 11000,
+    category: "Packs & Kits Capillaires",
+    image: "/elixir et creme.jpeg",
   },
   {
     id: 6,
-    name: "Retinol Night Cream",
-    description: "Anti-aging treatment while you sleep",
-    originalPrice: 45,
-    salePrice: 38.99,
-    category: "Treatment",
+    name: "Elixir & Dermaroleur",
+    description: "Une technologie de micro - aiguilles concue pour activer la microcirculation et ouvrir les pores. Il prepare idealement le cuir chevelu a absorber en profondeur vos serums et huiles M7 GOAT",
+    salePrice: 15000,
+    category: "Packs & Kits Capillaires",
+    image: "/elixir et dermaroleur.jpeg",
   },
   {
     id: 7,
-    name: "Gentle Foaming Cleanser",
-    description: "Remove impurities without stripping skin",
-    originalPrice: 18,
-    salePrice: 14.99,
-    category: "Cleansers",
+    name: "Elixir & Epices",
+    description: "L'excellence du soin M7 GOAT en coffret. Des combinaisons strategiques concues pour repondre a toutes vous problemes capillaires avec une efficacite renforcee. La solution complete pour une chevelure d'exception",
+    salePrice: 8500,
+    category: "Packs & Kits Capillaires",
+    image: "/elixir et epices.jpeg",
   },
   {
     id: 8,
-    name: "Rose Petal Toner",
-    description: "Balance and refresh your complexion",
-    originalPrice: 22,
-    salePrice: 18.99,
-    category: "Toners",
+    name: "Elixir & Shampoing",
+    description: "L'excellence du soin M7 GOAT en coffret. Des combinaisons strategiques concues pour repondre a toutes vous problemes capillaires avec une efficacite renforcee. La solution complete pour une chevelure d'exception",
+    salePrice: 12000,
+    category: "Packs & Kits Capillaires",
+    image: "/elixir et shampoing.jpeg",
   },
   {
     id: 9,
-    name: "Sunscreen SPF 50+",
-    description: "Broad spectrum protection, lightweight feel",
-    originalPrice: 28,
-    salePrice: 24.99,
-    category: "Sun Care",
+    name: "Elixir & Spray",
+    description: "L'excellence du soin M7 GOAT en coffret. Des combinaisons strategiques concues pour repondre a toutes vous problemes capillaires avec une efficacite renforcee. La solution complete pour une chevelure d'exception",
+    salePrice: 10000,
+    category: "Packs & Kits Capillaires",
+    image: "/elixir et spray.jpeg",
   },
   {
     id: 10,
-    name: "Niacinamide Pore Refiner",
-    description: "Minimize pores and control oil",
-    originalPrice: 32,
-    salePrice: 27.99,
-    category: "Serums",
+    name: "Elixir, Spray & Shampoing",
+    description: "Pourquoi choisir quand on peut tout avoir ? Profitez des bienfaits de nos trois produits phares dans un seul coffret pratique et economique",
+    salePrice: 17000,
+    category: "Pack & Kits Capillaires",
+    image: "/elixir, spray, shampoing.jpeg",
   },
   {
     id: 11,
-    name: "Eye Repair Cream",
-    description: "Reduce dark circles and fine lines",
-    originalPrice: 38,
-    salePrice: 32.99,
-    category: "Eye Care",
+    name: "Elixir, Spray, Shampoing & Creme",
+    description: "Pourquoi choisir quand on peut tout avoir ? Profitez des bienfaits de nos trois produits phares dans un seul coffret pratique et economique",
+    salePrice: 23000,
+    category: "Packs & Kits Capillaires",
+    image: "/elixir,spray,shampoing,creme.jpeg",
   },
   {
     id: 12,
-    name: "Exfoliating Scrub",
-    description: "Gently buff away dead skin cells",
-    originalPrice: 20,
-    salePrice: 16.99,
-    category: "Exfoliators",
+    name: "Epices",
+    description: "Un cocktail d'epices precieuses concu pour stimuler la racine et fortifier la fibre. L'essence de la nature pour une croissance boostee et des cheveux visiblement plus forts",
+    salePrice: 3500,
+    category: "Soins Naturels",
+    image: "/Epices.jpeg",
   },
   {
     id: 13,
-    name: "Hydrating Face Mask",
-    description: "Intensive moisture boost in 10 minutes",
-    originalPrice: 15,
-    salePrice: 12.99,
-    category: "Masks",
+    name: "Shampoing",
+    description: "Le bain absolu. Nettoie delicatement tout en infusant les nutriments essentiels pour reparer et proteger les cheveux les plus secs",
+    salePrice: 7000,
+    category: "Shampoings Capillaires",
+    image: "/Shampoing.jpeg",
   },
   {
     id: 14,
-    name: "Lip Care Balm",
-    description: "Nourish and protect delicate lips",
-    originalPrice: 12,
-    salePrice: 9.99,
-    category: "Lip Care",
+    name: "Spray",
+    description: "Source d'hydratation continue. Tonifie, rafraichit et discipline pour une chevelure souple et eclatante de sante",
+    salePrice: 5000,
+    category: "Sprays Capillaires",
+    image: "/spray.jpeg",
   },
   {
     id: 15,
-    name: "Body Glow Oil",
-    description: "Luxurious shimmer for silky smooth skin",
-    originalPrice: 35,
-    salePrice: 29.99,
-    category: "Body Care",
+    name: "Mini Gamme Complete",
+    description: "Pourquoi choisir quand on peut tout avoir ? Profitez des bienfaits de nos trois produits phares dans un seul coffret pratique et economique",
+    salePrice: 35000,
+    category: "Gammes Completes",
+    image: "/gamme complete 1.jpeg",
   },
   {
     id: 16,
-    name: "Complete Skincare Bundle",
-    description: "Everything you need for glowing skin",
-    originalPrice: 120,
-    salePrice: 89.99,
-    category: "Sets",
+    name: "Maxi Gamme Complete",
+    description: "Pourquoi choisir quand on peut tout avoir ? Profitez des bienfaits de nos trois produits phares dans un seul coffret pratique et economique",
+    salePrice: 45000,
+    category: "Gammes Completes",
+    image: "/gamme complete 2.jpeg",
   },
 ];
 
 const categories = [
   "All",
-  "Sets",
-  "Serums",
-  "Moisturizers",
-  "Treatment",
-  "Cleansers",
-  "Toners",
-  "Sun Care",
-  "Eye Care",
-  "Exfoliators",
-  "Masks",
-  "Lip Care",
-  "Body Care",
+  "Huiles & Serums Capillaires",
+  "Cremes Capillaires",
+  "Shampoings Capillaires",
+  "Sprays Capillaires",
+  "Soins Naturels",
+  "Accesoires Capillaires",
+  "Packs & Kits Capillaires",
+  "Gammes Completes",
 ];
 
 const ProductPage = () => {
@@ -254,23 +250,26 @@ const ProductPage = () => {
               <div key={product.id} className="group">
                 {/* Product Image */}
                 <div className="relative bg-[#f5e6e0] rounded-2xl aspect-square mb-4 overflow-hidden">
-                  {/* Wishlist Button */}
-                  <button className="absolute top-4 right-4 z-10 text-gray-600 hover:text-red-500 transition-colors">
-                    <Heart size={22} />
-                  </button>
-
                   {/* Category Badge */}
                   <span className="absolute top-4 left-4 bg-white/90 text-xs px-3 py-1 rounded-full text-gray-700">
                     {product.category}
                   </span>
-
-                  {/* Placeholder for product image */}
-                  <div className="w-full h-full flex items-center justify-center text-gray-400 group-hover:scale-105 transition-transform">
-                    <div className="text-center">
-                      <p className="text-sm">Product Image</p>
-                      <p className="text-xs mt-1">{product.name}</p>
+                  {product.image ? (
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      width={400}
+                      height={400}
+                      className="object-cover w-full h-full group-hover:scale-105 transition-transform"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-gray-400">
+                      <div className="text-center">
+                        <p className="text-sm">Product Image</p>
+                        <p className="text-xs mt-1">{product.name}</p>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
 
                 {/* Product Info */}
@@ -283,19 +282,16 @@ const ProductPage = () => {
                   </p>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="text-gray-400 line-through text-sm">
-                        ${product.originalPrice}
-                      </span>
                       <span className="font-semibold text-gray-900">
                         ${product.salePrice}
                       </span>
                     </div>
 
                     {/* Add to Cart Button */}
-                    <button className="flex items-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-full hover:bg-[#3d6b59] transition-colors text-sm">
-                      {t("add")}
-                      <ShoppingBag size={14} />
-                    </button>
+                    <button className="flex items-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-colors mt-auto">
+                  Commander
+                  <ShoppingBag size={16} />
+                </button>
                   </div>
                 </div>
               </div>

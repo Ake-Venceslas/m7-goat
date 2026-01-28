@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { User, Sparkles } from "lucide-react";
 import { useLanguage } from "@/src/context/LanguageContext";
 
@@ -42,11 +43,15 @@ const AboutPage = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Left - Image */}
             <div className="relative">
-              <div className="bg-gray-100 rounded-lg aspect-[4/5] flex items-center justify-center">
-                <div className="text-center text-gray-400">
-                  <User size={64} className="mx-auto mb-2" />
-                  <p className="text-sm">Founder Image</p>
-                </div>
+              <div className="bg-gray-100 rounded-lg aspect-[4/5] overflow-hidden">
+                <Image
+                  src="/Borel.jpeg"
+                  alt="Founder"
+                  width={500}
+                  height={625}
+                  className="object-cover w-full h-full"
+                  priority
+                />
               </div>
             </div>
 
@@ -57,16 +62,17 @@ const AboutPage = () => {
               </h2>
 
               <p className="text-gray-600 leading-relaxed mb-4">
-                At Glower Glow, founder Emma Sterling pioneers a beauty revolution. Her visionary
-                commitment to innovation, inclusivity, and cruelty-free practices defines our brand. Emma's
-                passion resonates in every product, inspiring confidence and self-expression. Join us on a
-                transformative journey to embrace your unique radiance.
+                Chez M7 GOAT, notre fondateur a entrepris une révolution capillaire. Son engagement 
+                visionnaire envers l'innovation, l'efficacité et les formules naturelles définit notre marque. 
+                Sa passion se reflète dans chaque produit, inspirant confiance et bien-être capillaire. 
+                Rejoignez-nous dans ce voyage transformateur pour révéler la beauté de vos cheveux.
               </p>
 
               <p className="text-gray-600 leading-relaxed mb-8">
-                Meet Emma Sterling, the driving force behind Glower Glow. A visionary leader committed to
-                redefining beauty standards, Emma infuses innovation and inclusivity into every product,
-                empowering individuals to embrace their unique radiance with confidence.
+                Découvrez la force motrice derrière M7 GOAT. Borel Nechi, un leader visionnaire engagé à 
+                redéfinir les standards des soins capillaires, infusant innovation et expertise dans 
+                chaque produit, permettant à chacun d'embrasser la santé et la vitalité de ses cheveux 
+                avec confiance.
               </p>
 
               {/* Founder Info */}
@@ -75,7 +81,7 @@ const AboutPage = () => {
                   <User size={24} className="text-gray-400" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Emma Sterling</h4>
+                  <h4 className="font-semibold text-gray-900">Borel Nechi</h4>
                   <p className="text-sm text-gray-500">{t("ceoFounder")}</p>
                 </div>
               </div>
@@ -113,9 +119,10 @@ const AboutPage = () => {
               </h2>
 
               <p className="text-gray-600 leading-relaxed mb-8">
-                At Glower Glow, we believe in empowering your beauty journey. Our curated
-                collection of radiant products is designed to enhance your natural allure,
-                fostering timeless confidence. Discover the glow within, effortlessly.
+                Chez M7 GOAT, nous croyons en l'autonomisation de votre parcours capillaire. Notre 
+                collection soigneusement élaborée de produits premium est conçue pour stimuler la 
+                croissance, renforcer les racines et sublimer la beauté naturelle de vos cheveux. 
+                Découvrez la force intérieure de vos cheveux, naturellement.
               </p>
 
               {/* Services Grid */}

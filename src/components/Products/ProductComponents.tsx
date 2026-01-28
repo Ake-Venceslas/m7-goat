@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Heart, ShoppingBag, ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
+import { ShoppingBag, ChevronLeft, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/src/context/LanguageContext";
 
 interface Product {
@@ -10,27 +11,30 @@ interface Product {
   name: string;
   description: string;
   salePrice: number;
-  image?: string;
+  image?: string
 }
 
 const products: Product[] = [
   {
     id: 1,
-    name: "The Glow Revival Set",
-    description: "Hydrate & Brighten for Dewy, Radiant Skin",
-    salePrice: 20.99,
+    name: "Creme",
+    description: "Le secret d'une douceur infinie. Une texture fondante qui infuse l'hydratation au coeur de la fibre pour des cheveux souples, dociles et sans frisottis",
+    salePrice: 6000,
+    image: "/Creme.jpeg",
   },
   {
     id: 2,
-    name: "Blemish Rescue System",
-    description: "Clear Breakouts & Soothe Angry Skin",
-    salePrice: 21.99,
+    name: "Dermaroleur",
+    description: "Une technologie de micro - aiguilles concue pour activer la microcirculation et ouvrir les pores",
+    salePrice: 10000,
+    image: "/dermaroleur.jpeg",
   },
   {
     id: 3,
-    name: "Age-Defy Overnight Kit",
-    description: "Hydrate & Brighten for Dewy, Radiant Skin",
-    salePrice: 20.99,
+    name: "Mini Elixir",
+    description: "Reveillez votre potentiel capillaire. Une formule concentree qui stimule la racine pour une croissance visiblement plus forte et dense",
+    salePrice: 5000,
+    image: "/elixir 5k.jpeg",
   },
 ];
 
@@ -67,15 +71,23 @@ const ProductComponents = () => {
           {products.map((product) => (
             <div key={product.id} className="group">
               {/* Product Image */}
-              <div className="relative bg-[#f5e6e0] rounded-2xl aspect-square mb-4 overflow-hidden">
-
-                {/* Placeholder for product image */}
-                <div className="w-full h-full flex items-center justify-center text-gray-400">
-                  <div className="text-center">
-                    <p className="text-sm">Product Image</p>
-                    <p className="text-xs">{product.name}</p>
+              <div className="relative bg-[#f5e6e0] rounded-2xl aspect-square mb-4 overflow-hidden flex items-center justify-center">
+                {product.image ? (
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    width={200}
+                    height={200}
+                    className="object-cover w-full h-full"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-gray-400">
+                    <div className="text-center">
+                      <p className="text-sm">Product Image</p>
+                      <p className="text-xs">{product.name}</p>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
 
               {/* Product Info */}
