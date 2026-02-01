@@ -4,12 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { Truck, ArrowUpRight, Star } from "lucide-react";
 import { useLanguage } from "@/src/context/LanguageContext";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 const HeaderComponents = () => {
   const { t } = useLanguage();
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -20,19 +20,19 @@ const HeaderComponents = () => {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };
 
-  const imageVariants = {
+  const imageVariants: Variants = {
     hidden: { opacity: 0, scale: 0.8, rotate: -5 },
     visible: {
       opacity: 1,
@@ -40,7 +40,7 @@ const HeaderComponents = () => {
       rotate: 0,
       transition: {
         duration: 0.8,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };
@@ -50,18 +50,18 @@ const HeaderComponents = () => {
     transition: {
       duration: 4,
       repeat: Infinity,
-      ease: "easeInOut",
+      ease: "easeInOut" as const,
     },
   };
 
-  const circleVariants = {
+  const circleVariants: Variants = {
     hidden: { scale: 0, opacity: 0 },
     visible: {
       scale: 1,
       opacity: 0.7,
       transition: {
         duration: 1,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };
