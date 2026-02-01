@@ -3,125 +3,186 @@
 import Link from "next/link";
 import { Instagram, Facebook, Youtube } from "lucide-react";
 import { useLanguage } from "@/src/context/LanguageContext";
+import { motion } from "framer-motion";
 
 const FooterComponents = () => {
   const { t } = useLanguage();
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
-    <footer className="w-full bg-[#3d6b59] py-12">
+    <motion.footer
+      className="w-full bg-[#3d6b59] py-12"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
       <div className="max-w-7xl mx-auto px-8">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-5 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {/* Brand Info */}
-          <div className="md:col-span-1">
-            <h3 className="text-xl font-semibold text-white mb-4">M7 GOAT</h3>
+          <motion.div variants={itemVariants} className="md:col-span-1">
+            <motion.h3
+              className="text-xl font-semibold text-white mb-4"
+              whileHover={{ scale: 1.05 }}
+            >
+              M7 GOAT
+            </motion.h3>
             <p className="text-sm text-white/80 mb-1">Tel: +77 586573843</p>
             <p className="text-sm text-white/80">Mon Sat 8am-7pm GMT</p>
-          </div>
+          </motion.div>
 
           {/* Navigation */}
-          <div>
+          <motion.div variants={itemVariants}>
             <h4 className="font-semibold text-white mb-4">{t("navigation")}</h4>
             <ul className="space-y-2">
               <li>
-                <Link
-                  href="/"
-                  className="text-sm text-white/70 hover:text-white transition-colors"
-                >
-                  {t("home")}
-                </Link>
+                <motion.div whileHover={{ x: 5 }}>
+                  <Link
+                    href="/"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
+                  >
+                    {t("home")}
+                  </Link>
+                </motion.div>
               </li>
               <li>
-                <Link
-                  href="/products"
-                  className="text-sm text-white/70 hover:text-white transition-colors"
-                >
-                  {t("allProducts")}
-                </Link>
+                <motion.div whileHover={{ x: 5 }}>
+                  <Link
+                    href="/products"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
+                  >
+                    {t("allProducts")}
+                  </Link>
+                </motion.div>
               </li>
             </ul>
-          </div>
+          </motion.div>
 
           {/* Company */}
-          <div>
+          <motion.div variants={itemVariants}>
             <h4 className="font-semibold text-white mb-4">{t("company")}</h4>
             <ul className="space-y-2">
               <li>
-                <Link
-                  href="/about"
-                  className="text-sm text-white/70 hover:text-white transition-colors"
-                >
-                  {t("aboutUs")}
-                </Link>
+                <motion.div whileHover={{ x: 5 }}>
+                  <Link
+                    href="/about"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
+                  >
+                    {t("aboutUs")}
+                  </Link>
+                </motion.div>
               </li>
               <li>
-                <Link
-                  href="/reviews"
-                  className="text-sm text-white/70 hover:text-white transition-colors"
-                >
-                  {t("reviews")}
-                </Link>
+                <motion.div whileHover={{ x: 5 }}>
+                  <Link
+                    href="/reviews"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
+                  >
+                    {t("reviews")}
+                  </Link>
+                </motion.div>
               </li>
               <li>
-                <Link
-                  href="/contact"
-                  className="text-sm text-white/70 hover:text-white transition-colors"
-                >
-                  {t("contact")}
-                </Link>
+                <motion.div whileHover={{ x: 5 }}>
+                  <Link
+                    href="/contact"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
+                  >
+                    {t("contact")}
+                  </Link>
+                </motion.div>
               </li>
             </ul>
-          </div>
+          </motion.div>
 
           {/* Resources */}
-          <div>
+          <motion.div variants={itemVariants}>
             <h4 className="font-semibold text-white mb-4">{t("resources")}</h4>
             <ul className="space-y-2">
               <li>
-                <Link
-                  href="/privacy"
-                  className="text-sm text-white/70 hover:text-white transition-colors"
-                >
-                  {t("privacyPolicy")}
-                </Link>
+                <motion.div whileHover={{ x: 5 }}>
+                  <Link
+                    href="/privacy"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
+                  >
+                    {t("privacyPolicy")}
+                  </Link>
+                </motion.div>
               </li>
               <li>
-                <Link
-                  href="/terms"
-                  className="text-sm text-white/70 hover:text-white transition-colors"
-                >
-                  {t("termsConditions")}
-                </Link>
+                <motion.div whileHover={{ x: 5 }}>
+                  <Link
+                    href="/terms"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
+                  >
+                    {t("termsConditions")}
+                  </Link>
+                </motion.div>
               </li>
             </ul>
-          </div>
+          </motion.div>
 
           {/* Social Media */}
-          <div>
+          <motion.div variants={itemVariants}>
             <h4 className="font-semibold text-white mb-4">{t("socialMedia")}</h4>
             <div className="flex flex-col gap-3">
-              <Link
-                href="https://instagram.com"
-                className="text-white/70 hover:text-white transition-colors"
-              >
-                <Instagram size={24} />
-              </Link>
-              <Link
-                href="https://facebook.com"
-                className="text-white/70 hover:text-white transition-colors"
-              >
-                <Facebook size={24} />
-              </Link>
-              <Link
-                href="https://youtube.com"
-                className="text-white/70 hover:text-white transition-colors"
-              >
-                <Youtube size={24} />
-              </Link>
+              <motion.div whileHover={{ scale: 1.2, rotate: 5 }} whileTap={{ scale: 0.9 }}>
+                <Link
+                  href="https://instagram.com"
+                  className="text-white/70 hover:text-white transition-colors inline-block"
+                >
+                  <Instagram size={24} />
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.2, rotate: -5 }} whileTap={{ scale: 0.9 }}>
+                <Link
+                  href="https://facebook.com"
+                  className="text-white/70 hover:text-white transition-colors inline-block"
+                >
+                  <Facebook size={24} />
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.2, rotate: 5 }} whileTap={{ scale: 0.9 }}>
+                <Link
+                  href="https://youtube.com"
+                  className="text-white/70 hover:text-white transition-colors inline-block"
+                >
+                  <Youtube size={24} />
+                </Link>
+              </motion.div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 

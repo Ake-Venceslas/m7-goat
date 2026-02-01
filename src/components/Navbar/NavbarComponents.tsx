@@ -116,12 +116,6 @@ const NavbarComponents = () => {
             >
               {t("reviews")}
             </Link>
-            <Link
-              href="/blog"
-              className="text-sm text-gray-700 hover:text-gray-900 transition-colors"
-            >
-              {t("blogs")}
-            </Link>
           </div>
 
           {/* Right Side - Icons and Login */}

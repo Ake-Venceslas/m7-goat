@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Star, ChevronRight, User } from "lucide-react";
 import { useLanguage } from "@/src/context/LanguageContext";
+import { motion } from "framer-motion";
 
 interface Review {
   id: number;
@@ -57,28 +58,76 @@ const ReviewComponents = () => {
     ));
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40, rotateY: -15 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      rotateY: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
     <section className="w-full bg-white py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-8">
         {/* Section Heading */}
-        <h2 className="text-4xl md:text-5xl font-serif font-medium text-gray-900 text-center mb-16">
+        <motion.h2
+          className="text-4xl md:text-5xl font-serif font-medium text-gray-900 text-center mb-16"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           {t("whatCustomersSay")}
-        </h2>
+        </motion.h2>
 
         {/* Reviews Grid */}
         <div className="relative">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {reviews.map((review) => (
-              <div
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {reviews.map((review, index) => (
+              <motion.div
                 key={review.id}
                 className="relative bg-white rounded-2xl p-6 border-2 border-[#e8b4a8] shadow-sm"
+                variants={cardVariants}
+                whileHover={{ 
+                  y: -10, 
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+                  borderColor: "#d4a094"
+                }}
+                transition={{ type: "spring", stiffness: 300 }}
               >
                 {/* Avatar */}
-                <div className="flex justify-center mb-4">
+                <motion.div
+                  className="flex justify-center mb-4"
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 + 0.3, type: "spring", stiffness: 200 }}
+                >
                   <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center">
                     <User size={32} className="text-gray-300" />
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Name */}
                 <h3 className="text-center text-[#d4a094] font-medium mb-4">
@@ -91,34 +140,50 @@ const ReviewComponents = () => {
                 </p>
 
                 {/* Stars */}
-                <div className="flex justify-center gap-1">
+                <motion.div
+                  className="flex justify-center gap-1"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 + 0.5 }}
+                >
                   {renderStars(review.rating)}
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Next Arrow */}
-          <button
+          <motion.button
             onClick={handleNext}
             className="absolute -right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-[#d4a094] rounded-full flex items-center justify-center text-white hover:bg-[#c49084] transition-colors shadow-lg"
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            whileTap={{ scale: 0.9 }}
           >
             <ChevronRight size={24} />
-          </button>
+          </motion.button>
         </div>
 
         {/* Dots Indicator */}
-        <div className="flex items-center justify-center gap-2 mt-8">
+        <motion.div
+          className="flex items-center justify-center gap-2 mt-8"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+        >
           {reviews.map((_, index) => (
-            <button
+            <motion.button
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`w-2 h-2 rounded-full transition-colors ${
                 index === currentIndex ? "bg-[#d4a094]" : "bg-gray-300"
               }`}
+              whileHover={{ scale: 1.5 }}
+              whileTap={{ scale: 0.8 }}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

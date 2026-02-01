@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ShoppingBag, SlidersHorizontal, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/src/context/LanguageContext";
+import { motion } from "framer-motion";
 
 interface Product {
   id: number;
@@ -168,34 +169,72 @@ const ProductPage = () => {
       ? products
       : products.filter((p) => p.category === selectedCategory);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.08 },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.4, ease: "easeOut" },
+    },
+  };
+
   return (
     <div className="w-full">
       {/* Hero Banner */}
-      <div className="bg-[#3d6b59] py-16">
+      <motion.div
+        className="bg-[#3d6b59] py-16"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="max-w-7xl mx-auto px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-serif text-white mb-4">
+          <motion.h1
+            className="text-4xl md:text-5xl font-serif text-white mb-4"
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             {t("allProducts")}
-          </h1>
-          <div className="flex items-center justify-center gap-2 text-white/80 text-sm">
+          </motion.h1>
+          <motion.div
+            className="flex items-center justify-center gap-2 text-white/80 text-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
             <Link href="/" className="hover:text-white transition-colors">
               {t("home")}
             </Link>
             <span>»</span>
             <span>{t("allProducts")}</span>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Main Content */}
       <section className="bg-white py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-8">
           {/* Filters Bar */}
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8 pb-6 border-b border-gray-200">
+          <motion.div
+            className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8 pb-6 border-b border-gray-200"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
             {/* Category Filters */}
             <div className="flex flex-wrap items-center gap-2">
               <SlidersHorizontal size={18} className="text-gray-500" />
               {categories.slice(0, 6).map((category) => (
-                <button
+                <motion.button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-full text-sm transition-colors ${
@@ -203,15 +242,20 @@ const ProductPage = () => {
                       ? "bg-[#3d6b59] text-white"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   {category}
-                </button>
+                </motion.button>
               ))}
               <div className="relative group">
-                <button className="px-4 py-2 rounded-full text-sm bg-gray-100 text-gray-700 hover:bg-gray-200 flex items-center gap-1">
+                <motion.button
+                  className="px-4 py-2 rounded-full text-sm bg-gray-100 text-gray-700 hover:bg-gray-200 flex items-center gap-1"
+                  whileHover={{ scale: 1.05 }}
+                >
                   More
                   <ChevronDown size={14} />
-                </button>
+                </motion.button>
                 <div className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-lg py-2 z-10 hidden group-hover:block min-w-[150px]">
                   {categories.slice(6).map((category) => (
                     <button
@@ -242,25 +286,38 @@ const ProductPage = () => {
                 <option>Newest</option>
               </select>
             </div>
-          </div>
+          </motion.div>
 
           {/* Products Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {filteredProducts.map((product) => (
-              <div key={product.id} className="group">
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            key={selectedCategory}
+          >
+            {filteredProducts.map((product, index) => (
+              <motion.div
+                key={product.id}
+                className="group"
+                variants={cardVariants}
+                whileHover={{ y: -10 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 {/* Product Image */}
-                <div className="relative bg-[#f5e6e0] rounded-2xl aspect-square mb-4 overflow-hidden">
-                  {/* Category Badge */}
-                  <span className="absolute top-4 left-4 bg-white/90 text-xs px-3 py-1 rounded-full text-gray-700">
-                    {product.category}
-                  </span>
+                <motion.div
+                  className="relative bg-[#f5e6e0] rounded-2xl aspect-square mb-4 overflow-hidden"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  {/* Category Badge removed */}
                   {product.image ? (
                     <Image
                       src={product.image}
                       alt={product.name}
                       width={400}
                       height={400}
-                      className="object-cover w-full h-full group-hover:scale-105 transition-transform"
+                      className="object-contain w-full h-full bg-white p-4 group-hover:scale-110 transition-transform duration-500"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-gray-400">
@@ -270,7 +327,7 @@ const ProductPage = () => {
                       </div>
                     </div>
                   )}
-                </div>
+                </motion.div>
 
                 {/* Product Info */}
                 <div>
@@ -283,27 +340,46 @@ const ProductPage = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className="font-semibold text-gray-900">
-                        ${product.salePrice}
+                        {product.salePrice} FCFA
                       </span>
                     </div>
 
                     {/* Add to Cart Button */}
-                    <button className="flex items-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-colors mt-auto">
+                    <motion.button 
+                      onClick={() => {
+                        const phoneNumber = "237678691969"; // Remplacez par le numéro WhatsApp du vendeur
+                        const message = `Bonjour M7 GOAT! 🌟\n\nJe suis intéressé(e) par:\n📦 *${product.name}*\n💰 Prix: ${product.salePrice} FCFA\n\nPouvez-vous me donner plus d'informations?\n\nMerci!`;
+                        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                        window.open(whatsappUrl, '_blank');
+                      }}
+                      className="flex items-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-colors mt-auto"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
                   Commander
                   <ShoppingBag size={16} />
-                </button>
+                </motion.button>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Load More */}
-          <div className="flex justify-center mt-12">
-            <button className="border border-gray-900 text-gray-900 px-8 py-3 rounded-full hover:bg-gray-900 hover:text-white transition-colors">
+          <motion.div
+            className="flex justify-center mt-12"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            <motion.button
+              className="border border-gray-900 text-gray-900 px-8 py-3 rounded-full hover:bg-gray-900 hover:text-white transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
               {t("loadMore")}
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
         </div>
       </section>
     </div>

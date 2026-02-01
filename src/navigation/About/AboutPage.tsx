@@ -4,9 +4,36 @@ import Link from "next/link";
 import Image from "next/image";
 import { User, Sparkles } from "lucide-react";
 import { useLanguage } from "@/src/context/LanguageContext";
+import { motion } from "framer-motion";
 
 const AboutPage = () => {
   const { t } = useLanguage();
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 },
+    },
+  };
+
+  const scaleIn = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
 
   const services = [
     { name: "Aromatherapy", icon: "✨" },
@@ -22,28 +49,53 @@ const AboutPage = () => {
   return (
     <div className="w-full">
       {/* Hero Banner */}
-      <div className="bg-[#3d6b59] py-16">
+      <motion.div
+        className="bg-[#3d6b59] py-16"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="max-w-7xl mx-auto px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-serif text-white mb-4">
+          <motion.h1
+            className="text-4xl md:text-5xl font-serif text-white mb-4"
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             {t("aboutUsTitle")}
-          </h1>
-          <div className="flex items-center justify-center gap-2 text-white/80 text-sm">
+          </motion.h1>
+          <motion.div
+            className="flex items-center justify-center gap-2 text-white/80 text-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
             <Link href="/" className="hover:text-white transition-colors">
               {t("home")}
             </Link>
             <span>»</span>
             <span>{t("aboutUsTitle")}</span>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Founder's Vision Section */}
       <section className="bg-white py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Left - Image */}
-            <div className="relative">
-              <div className="bg-gray-100 rounded-lg aspect-[4/5] overflow-hidden">
+            <motion.div
+              className="relative"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={scaleIn}
+            >
+              <motion.div
+                className="bg-gray-100 rounded-lg aspect-[4/5] overflow-hidden"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <Image
                   src="/Borel.jpeg"
                   alt="Founder"
@@ -52,46 +104,69 @@ const AboutPage = () => {
                   className="object-cover w-full h-full"
                   priority
                 />
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
             {/* Right - Content */}
-            <div>
-              <h2 className="text-3xl md:text-4xl font-serif text-gray-900 mb-6">
-                {t("founderVision")}
-              </h2>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              <motion.h2
+                variants={fadeInUp}
+                className="text-3xl md:text-4xl font-serif text-gray-900 mb-6"
+              >
+                {/* {t("founderVision")} */}
+                La Vision du Fondateur – Révéler la Puissance Capillaire avec M7 GOAT
+              </motion.h2>
 
-              <p className="text-gray-600 leading-relaxed mb-4">
+              <motion.p variants={fadeInUp} className="text-gray-600 leading-relaxed mb-4">
                 Chez M7 GOAT, notre fondateur a entrepris une révolution capillaire. Son engagement 
                 visionnaire envers l'innovation, l'efficacité et les formules naturelles définit notre marque. 
                 Sa passion se reflète dans chaque produit, inspirant confiance et bien-être capillaire. 
                 Rejoignez-nous dans ce voyage transformateur pour révéler la beauté de vos cheveux.
-              </p>
+              </motion.p>
 
-              <p className="text-gray-600 leading-relaxed mb-8">
+              <motion.p variants={fadeInUp} className="text-gray-600 leading-relaxed mb-8">
                 Découvrez la force motrice derrière M7 GOAT. Borel Nechi, un leader visionnaire engagé à 
                 redéfinir les standards des soins capillaires, infusant innovation et expertise dans 
                 chaque produit, permettant à chacun d'embrasser la santé et la vitalité de ses cheveux 
                 avec confiance.
-              </p>
+              </motion.p>
 
               {/* Founder Info */}
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+              <motion.div
+                variants={fadeInUp}
+                className="flex items-center gap-4"
+                whileHover={{ x: 10 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <motion.div
+                  className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                >
                   <User size={24} className="text-gray-400" />
-                </div>
+                </motion.div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Borel Nechi</h4>
-                  <p className="text-sm text-gray-500">{t("ceoFounder")}</p>
+                  <p className="text-sm text-gray-500">PDG et Fondateur</p>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Questions Banner */}
-      <div className="bg-[#3d3d3d] py-6">
+      <motion.div
+        className="bg-[#3d3d3d] py-6"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white text-center md:text-left">
             <span className="font-serif italic">{t("questions")}</span>
@@ -99,69 +174,128 @@ const AboutPage = () => {
               {t("expertsHelp")}
             </span>
           </p>
-          <Link
-            href="/contact"
-            className="border border-white text-white px-6 py-2 rounded hover:bg-white hover:text-gray-900 transition-colors"
-          >
-            {t("getInTouch")}
-          </Link>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Link
+              href="/contact"
+              className="border border-white text-white px-6 py-2 rounded hover:bg-white hover:text-gray-900 transition-colors"
+            >
+              {t("getInTouch")}
+            </Link>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Illuminate Beauty Section */}
       <section className="bg-white py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Left - Content */}
-            <div>
-              <h2 className="text-3xl md:text-4xl font-serif italic text-gray-900 mb-6">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              <motion.h2
+                variants={fadeInUp}
+                className="text-3xl md:text-4xl font-serif italic text-gray-900 mb-6"
+              >
                 {t("illuminateBeauty")}
-              </h2>
+              </motion.h2>
 
-              <p className="text-gray-600 leading-relaxed mb-8">
+              <motion.p variants={fadeInUp} className="text-gray-600 leading-relaxed mb-8">
                 Chez M7 GOAT, nous croyons en l'autonomisation de votre parcours capillaire. Notre 
                 collection soigneusement élaborée de produits premium est conçue pour stimuler la 
                 croissance, renforcer les racines et sublimer la beauté naturelle de vos cheveux. 
                 Découvrez la force intérieure de vos cheveux, naturellement.
-              </p>
+              </motion.p>
 
               {/* Services Grid */}
-              <div className="grid grid-cols-2 gap-4 mb-8">
+              <motion.div
+                className="grid grid-cols-2 gap-4 mb-8"
+                variants={staggerContainer}
+              >
                 {services.map((service, index) => (
-                  <div key={index} className="flex items-center gap-2">
-                    <Sparkles size={16} className="text-[#3d6b59]" />
+                  <motion.div
+                    key={index}
+                    className="flex items-center gap-2"
+                    variants={fadeInUp}
+                    whileHover={{ x: 10, scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <motion.div
+                      animate={{ rotate: [0, 10, -10, 0] }}
+                      transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
+                    >
+                      <Sparkles size={16} className="text-[#3d6b59]" />
+                    </motion.div>
                     <span className="text-sm text-gray-700">{service.name}</span>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
 
               {/* Read More Button */}
-              <Link
-                href="/products"
-                className="inline-block border border-gray-900 text-gray-900 px-6 py-3 hover:bg-gray-900 hover:text-white transition-colors"
-              >
-                {t("readMore")}
-              </Link>
-            </div>
+              <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link
+                  href="/products"
+                  className="inline-block border border-gray-900 text-gray-900 px-6 py-3 hover:bg-gray-900 hover:text-white transition-colors"
+                >
+                  {t("readMore")}
+                </Link>
+              </motion.div>
+            </motion.div>
 
             {/* Right - Images Grid */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-[#f5e6e0] rounded-lg aspect-square flex items-center justify-center">
-                <div className="text-center text-gray-400">
-                  <p className="text-sm">Product Image</p>
-                </div>
-              </div>
-              <div className="bg-[#e8d8c8] rounded-lg aspect-square flex items-center justify-center">
-                <div className="text-center text-gray-400">
-                  <p className="text-sm">Product Image</p>
-                </div>
-              </div>
-              <div className="bg-[#f5e6e0] rounded-lg aspect-square flex items-center justify-center col-span-2">
-                <div className="text-center text-gray-400">
-                  <p className="text-sm">Beauty Image</p>
-                </div>
-              </div>
-            </div>
+            <motion.div
+              className="grid grid-cols-2 gap-4"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              <motion.div
+                className="bg-[#f5e6e0] rounded-lg aspect-square flex items-center justify-center overflow-hidden"
+                variants={scaleIn}
+                whileHover={{ scale: 1.05, rotate: 2 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Image
+                  src="/product1.jpeg"
+                  alt="Produit 1"
+                  width={200}
+                  height={200}
+                  className="object-cover w-full h-full"
+                />
+              </motion.div>
+              <motion.div
+                className="bg-[#e8d8c8] rounded-lg aspect-square flex items-center justify-center overflow-hidden"
+                variants={scaleIn}
+                whileHover={{ scale: 1.05, rotate: -2 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Image
+                  src="/product2.jpeg"
+                  alt="Produit 2"
+                  width={200}
+                  height={200}
+                  className="object-cover w-full h-full"
+                />
+              </motion.div>
+              <motion.div
+                className="bg-[#f5e6e0] rounded-lg aspect-square flex items-center justify-center col-span-2 overflow-hidden"
+                variants={scaleIn}
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Image
+                  src="/beauty.jpeg"
+                  alt="Beauté"
+                  width={420}
+                  height={200}
+                  className="object-cover w-full h-full"
+                />
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
