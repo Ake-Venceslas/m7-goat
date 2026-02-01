@@ -5,12 +5,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { ShoppingBag, ChevronLeft, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/src/context/LanguageContext";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 interface Product {
   id: number;
-  name: string;
-  description: string;
+  nameKey: string;
+  descKey: string;
   salePrice: number;
   image?: string
 }
@@ -18,22 +18,22 @@ interface Product {
 const products: Product[] = [
   {
     id: 1,
-    name: "Creme",
-    description: "Le secret d'une douceur infinie. Une texture fondante qui infuse l'hydratation au coeur de la fibre pour des cheveux souples, dociles et sans frisottis",
+    nameKey: "prodCreme",
+    descKey: "descCreme",
     salePrice: 6000,
     image: "/Creme.jpeg",
   },
   {
     id: 2,
-    name: "Dermaroleur",
-    description: "Une technologie de micro - aiguilles concue pour activer la microcirculation et ouvrir les pores",
+    nameKey: "prodDermaroleur",
+    descKey: "descDermaroleur",
     salePrice: 10000,
     image: "/dermaroleur.jpeg",
   },
   {
     id: 3,
-    name: "Mini Elixir",
-    description: "Reveillez votre potentiel capillaire. Une formule concentree qui stimule la racine pour une croissance visiblement plus forte et dense",
+    nameKey: "prodMiniElixir",
+    descKey: "descElixir",
     salePrice: 5000,
     image: "/elixir 5k.jpeg",
   },
@@ -51,7 +51,7 @@ const ProductComponents = () => {
     setCurrentIndex((prev) => (prev < products.length - 3 ? prev + 1 : prev));
   };
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -61,7 +61,7 @@ const ProductComponents = () => {
     },
   };
 
-  const cardVariants = {
+  const cardVariants: Variants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
       opacity: 1,
@@ -122,7 +122,7 @@ const ProductComponents = () => {
                 {product.image ? (
                   <Image
                     src={product.image}
-                    alt={product.name}
+                    alt={t(product.nameKey)}
                     width={200}
                     height={200}
                     className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
@@ -130,8 +130,8 @@ const ProductComponents = () => {
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-gray-400">
                     <div className="text-center">
-                      <p className="text-sm">Product Image</p>
-                      <p className="text-xs">{product.name}</p>
+                      <p className="text-sm">{t("productImage")}</p>
+                      <p className="text-xs">{t(product.nameKey)}</p>
                     </div>
                   </div>
                 )}
@@ -141,10 +141,10 @@ const ProductComponents = () => {
               <div className="flex items-start justify-between">
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-1">
-                    {product.name}
+                    {t(product.nameKey)}
                   </h3>
                   <p className="text-sm text-gray-500 mb-2">
-                    {product.description}
+                    {t(product.descKey)}
                   </p>
                   <span className="font-semibold text-gray-900">
                     {product.salePrice} FCFA
@@ -154,8 +154,8 @@ const ProductComponents = () => {
                 {/* Add to Cart Button */}
                 <motion.button 
                   onClick={() => {
-                    const phoneNumber = "237678691969"; // Numéro WhatsApp du vendeur
-                    const message = `Bonjour M7 GOAT! 🌟\n\nJe suis intéressé(e) par:\n📦 *${product.name}*\n💰 Prix: ${product.salePrice} FCFA\n\nPouvez-vous me donner plus d'informations?\n\nMerci!`;
+                    const phoneNumber = "237678691969";
+                    const message = `Bonjour M7 GOAT! 🌟\n\nJe suis intéressé(e) par:\n📦 *${t(product.nameKey)}*\n💰 Prix: ${product.salePrice} FCFA\n\nPouvez-vous me donner plus d'informations?\n\nMerci!`;
                     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                     window.open(whatsappUrl, '_blank');
                   }}
@@ -163,7 +163,7 @@ const ProductComponents = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Commander
+                  {t("commander")}
                   <ShoppingBag size={16} />
                 </motion.button>
               </div>

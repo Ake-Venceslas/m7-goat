@@ -295,9 +295,6 @@ const NavbarComponents = () => {
           })}
         </nav>
       </div>
-
-      {/* Spacer for mobile to prevent content from being hidden behind floating nav */}
-      <div className="h-24 md:hidden" />
     </>
   );
 };

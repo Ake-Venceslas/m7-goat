@@ -4,12 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { User, Sparkles } from "lucide-react";
 import { useLanguage } from "@/src/context/LanguageContext";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 const AboutPage = () => {
   const { t } = useLanguage();
 
-  const fadeInUp = {
+  const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
@@ -18,7 +18,7 @@ const AboutPage = () => {
     },
   };
 
-  const staggerContainer = {
+  const staggerContainer: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -26,7 +26,7 @@ const AboutPage = () => {
     },
   };
 
-  const scaleIn = {
+  const scaleIn: Variants = {
     hidden: { opacity: 0, scale: 0.8 },
     visible: {
       opacity: 1,
@@ -118,22 +118,15 @@ const AboutPage = () => {
                 variants={fadeInUp}
                 className="text-3xl md:text-4xl font-serif text-gray-900 mb-6"
               >
-                {/* {t("founderVision")} */}
-                La Vision du Fondateur – Révéler la Puissance Capillaire avec M7 GOAT
+                {t("founderVisionTitle")}
               </motion.h2>
 
               <motion.p variants={fadeInUp} className="text-gray-600 leading-relaxed mb-4">
-                Chez M7 GOAT, notre fondateur a entrepris une révolution capillaire. Son engagement 
-                visionnaire envers l'innovation, l'efficacité et les formules naturelles définit notre marque. 
-                Sa passion se reflète dans chaque produit, inspirant confiance et bien-être capillaire. 
-                Rejoignez-nous dans ce voyage transformateur pour révéler la beauté de vos cheveux.
+                {t("founderDesc1")}
               </motion.p>
 
               <motion.p variants={fadeInUp} className="text-gray-600 leading-relaxed mb-8">
-                Découvrez la force motrice derrière M7 GOAT. Borel Nechi, un leader visionnaire engagé à 
-                redéfinir les standards des soins capillaires, infusant innovation et expertise dans 
-                chaque produit, permettant à chacun d'embrasser la santé et la vitalité de ses cheveux 
-                avec confiance.
+                {t("founderDesc2")}
               </motion.p>
 
               {/* Founder Info */}
@@ -151,7 +144,7 @@ const AboutPage = () => {
                 </motion.div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Borel Nechi</h4>
-                  <p className="text-sm text-gray-500">PDG et Fondateur</p>
+                  <p className="text-sm text-gray-500">{t("ceoAndFounder")}</p>
                 </div>
               </motion.div>
             </motion.div>
@@ -204,10 +197,7 @@ const AboutPage = () => {
               </motion.h2>
 
               <motion.p variants={fadeInUp} className="text-gray-600 leading-relaxed mb-8">
-                Chez M7 GOAT, nous croyons en l'autonomisation de votre parcours capillaire. Notre 
-                collection soigneusement élaborée de produits premium est conçue pour stimuler la 
-                croissance, renforcer les racines et sublimer la beauté naturelle de vos cheveux. 
-                Découvrez la force intérieure de vos cheveux, naturellement.
+                {t("illuminateDesc")}
               </motion.p>
 
               {/* Services Grid */}

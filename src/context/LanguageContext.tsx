@@ -55,6 +55,13 @@ export const translations: Translations = {
   seeAll: { en: "See All", fr: "Voir Tout" },
   add: { en: "Add", fr: "Ajouter" },
   loadMore: { en: "Load More Products", fr: "Charger Plus de Produits" },
+  commander: { en: "Order", fr: "Commander" },
+  productsCount: { en: "products", fr: "produits" },
+  more: { en: "More", fr: "Plus" },
+  productImage: { en: "Product Image", fr: "Image du Produit" },
+  featuredImage: { en: "Featured Image", fr: "Image en Vedette" },
+  blogImage: { en: "Blog Image", fr: "Image du Blog" },
+  readMoreLink: { en: "Read More", fr: "Lire Plus" },
 
   // Reviews Section
   whatCustomersSay: { en: "What our customers have to say...", fr: "Ce que nos clients disent..." },
@@ -78,6 +85,11 @@ export const translations: Translations = {
   getInTouch: { en: "Get In Touch", fr: "Contactez-Nous" },
   illuminateBeauty: { en: "Illuminate Beauty Timeless Confidence.", fr: "Illuminez la Beauté, Confiance Intemporelle." },
   readMore: { en: "READ MORE", fr: "EN SAVOIR PLUS" },
+  founderVisionTitle: { en: "Founder's Vision – Revealing Hair Power with M7 GOAT", fr: "La Vision du Fondateur – Révéler la Puissance Capillaire avec M7 GOAT" },
+  founderDesc1: { en: "At M7 GOAT, our founder embarked on a hair revolution. His visionary commitment to innovation, effectiveness and natural formulas defines our brand. His passion is reflected in every product, inspiring confidence and hair well-being. Join us on this transformative journey to reveal the beauty of your hair.", fr: "Chez M7 GOAT, notre fondateur a entrepris une révolution capillaire. Son engagement visionnaire envers l'innovation, l'efficacité et les formules naturelles définit notre marque. Sa passion se reflète dans chaque produit, inspirant confiance et bien-être capillaire. Rejoignez-nous dans ce voyage transformateur pour révéler la beauté de vos cheveux." },
+  founderDesc2: { en: "Discover the driving force behind M7 GOAT. Borel Nechi, a visionary leader committed to redefining hair care standards, infusing innovation and expertise into every product, enabling everyone to embrace the health and vitality of their hair with confidence.", fr: "Découvrez la force motrice derrière M7 GOAT. Borel Nechi, un leader visionnaire engagé à redéfinir les standards des soins capillaires, infusant innovation et expertise dans chaque produit, permettant à chacun d'embrasser la santé et la vitalité de ses cheveux avec confiance." },
+  ceoAndFounder: { en: "CEO and Founder", fr: "PDG et Fondateur" },
+  illuminateDesc: { en: "At M7 GOAT, we believe in empowering your hair journey. Our carefully crafted collection of premium products is designed to stimulate growth, strengthen roots and enhance the natural beauty of your hair. Discover the inner strength of your hair, naturally.", fr: "Chez M7 GOAT, nous croyons en l'autonomisation de votre parcours capillaire. Notre collection soigneusement élaborée de produits premium est conçue pour stimuler la croissance, renforcer les racines et sublimer la beauté naturelle de vos cheveux. Découvrez la force intérieure de vos cheveux, naturellement." },
 
   // Blog Page
   beautyBlog: { en: "Beauty Blog", fr: "Blog Beauté" },
@@ -102,18 +114,70 @@ export const translations: Translations = {
 
   // Categories
   all: { en: "All", fr: "Tout" },
-  sets: { en: "Sets", fr: "Coffrets" },
-  serums: { en: "Serums", fr: "Sérums" },
-  moisturizers: { en: "Moisturizers", fr: "Hydratants" },
-  treatment: { en: "Treatment", fr: "Traitement" },
-  cleansers: { en: "Cleansers", fr: "Nettoyants" },
-  toners: { en: "Toners", fr: "Toniques" },
-  sunCare: { en: "Sun Care", fr: "Protection Solaire" },
-  eyeCare: { en: "Eye Care", fr: "Soins Yeux" },
-  exfoliators: { en: "Exfoliators", fr: "Exfoliants" },
-  masks: { en: "Masks", fr: "Masques" },
-  lipCare: { en: "Lip Care", fr: "Soins Lèvres" },
-  bodyCare: { en: "Body Care", fr: "Soins Corps" },
+  catHuileSerums: { en: "Oils & Hair Serums", fr: "Huiles & Serums Capillaires" },
+  catCremes: { en: "Hair Creams", fr: "Cremes Capillaires" },
+  catShampoings: { en: "Hair Shampoos", fr: "Shampoings Capillaires" },
+  catSprays: { en: "Hair Sprays", fr: "Sprays Capillaires" },
+  catSoinsNaturels: { en: "Natural Care", fr: "Soins Naturels" },
+  catAccessoires: { en: "Hair Accessories", fr: "Accesoires Capillaires" },
+  catPacksKits: { en: "Packs & Kits", fr: "Packs & Kits Capillaires" },
+  catGammesCompletes: { en: "Complete Ranges", fr: "Gammes Completes" },
+
+  // Product Names
+  prodCreme: { en: "Cream", fr: "Creme" },
+  prodDermaroleur: { en: "Dermaroller", fr: "Dermaroleur" },
+  prodMiniElixir: { en: "Mini Elixir", fr: "Mini Elixir" },
+  prodMaxiElixir: { en: "Maxi Elixir", fr: "Maxi Elixir" },
+  prodElixirCreme: { en: "Elixir & Cream", fr: "Elixir & Creme" },
+  prodElixirDermaroleur: { en: "Elixir & Dermaroller", fr: "Elixir & Dermaroleur" },
+  prodElixirEpices: { en: "Elixir & Spices", fr: "Elixir & Epices" },
+  prodElixirShampoing: { en: "Elixir & Shampoo", fr: "Elixir & Shampoing" },
+  prodElixirSpray: { en: "Elixir & Spray", fr: "Elixir & Spray" },
+  prodElixirSprayShampoing: { en: "Elixir, Spray & Shampoo", fr: "Elixir, Spray & Shampoing" },
+  prodElixirSprayShampoingCreme: { en: "Elixir, Spray, Shampoo & Cream", fr: "Elixir, Spray, Shampoing & Creme" },
+  prodEpices: { en: "Spices", fr: "Epices" },
+  prodShampoing: { en: "Shampoo", fr: "Shampoing" },
+  prodSpray: { en: "Spray", fr: "Spray" },
+  prodMiniGamme: { en: "Mini Complete Range", fr: "Mini Gamme Complete" },
+  prodMaxiGamme: { en: "Maxi Complete Range", fr: "Maxi Gamme Complete" },
+
+  // Product Descriptions
+  descCreme: { 
+    en: "The secret to infinite softness. A melting texture that infuses hydration into the core of the fiber for supple, manageable, frizz-free hair", 
+    fr: "Le secret d'une douceur infinie. Une texture fondante qui infuse l'hydratation au coeur de la fibre pour des cheveux souples, dociles et sans frisottis" 
+  },
+  descDermaroleur: { 
+    en: "A micro-needle technology designed to activate microcirculation and open pores", 
+    fr: "Une technologie de micro - aiguilles concue pour activer la microcirculation et ouvrir les pores" 
+  },
+  descElixir: { 
+    en: "Awaken your hair potential. A concentrated formula that stimulates the root for visibly stronger and denser growth", 
+    fr: "Reveillez votre potentiel capillaire. Une formule concentree qui stimule la racine pour une croissance visiblement plus forte et dense" 
+  },
+  descPack: { 
+    en: "The excellence of M7 GOAT care in a box. Strategic combinations designed to address all your hair problems with enhanced effectiveness. The complete solution for exceptional hair", 
+    fr: "L'excellence du soin M7 GOAT en coffret. Des combinaisons strategiques concues pour repondre a toutes vous problemes capillaires avec une efficacite renforcee. La solution complete pour une chevelure d'exception" 
+  },
+  descElixirDermaroleur: { 
+    en: "A micro-needle technology designed to activate microcirculation and open pores. It ideally prepares the scalp to deeply absorb your M7 GOAT serums and oils", 
+    fr: "Une technologie de micro - aiguilles concue pour activer la microcirculation et ouvrir les pores. Il prepare idealement le cuir chevelu a absorber en profondeur vos serums et huiles M7 GOAT" 
+  },
+  descGamme: { 
+    en: "Why choose when you can have it all? Enjoy the benefits of our three flagship products in one convenient and economical box", 
+    fr: "Pourquoi choisir quand on peut tout avoir ? Profitez des bienfaits de nos trois produits phares dans un seul coffret pratique et economique" 
+  },
+  descEpices: { 
+    en: "A cocktail of precious spices designed to stimulate the root and strengthen the fiber. The essence of nature for boosted growth and visibly stronger hair", 
+    fr: "Un cocktail d'epices precieuses concu pour stimuler la racine et fortifier la fibre. L'essence de la nature pour une croissance boostee et des cheveux visiblement plus forts" 
+  },
+  descShampoing: { 
+    en: "The ultimate bath. Gently cleanses while infusing essential nutrients to repair and protect the driest hair", 
+    fr: "Le bain absolu. Nettoie delicatement tout en infusant les nutriments essentiels pour reparer et proteger les cheveux les plus secs" 
+  },
+  descSpray: { 
+    en: "Continuous hydration source. Tones, refreshes and disciplines for supple and radiantly healthy hair", 
+    fr: "Source d'hydratation continue. Tonifie, rafraichit et discipline pour une chevelure souple et eclatante de sante" 
+  },
 };
 
 interface LanguageContextType {
