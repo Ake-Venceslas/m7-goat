@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ShoppingBag, SlidersHorizontal, ChevronDown } from "lucide-react";
-import { useLanguage } from "@/src/context/LanguageContext";
+import { useSearchParams } from "next/navigation";
+import { ShoppingBag, SlidersHorizontal, ChevronDown, X } from "lucide-react";
+import { useLanguage, translations } from "@/src/context/LanguageContext";
 import { motion, type Variants } from "framer-motion";
 
 interface Product {
@@ -161,13 +162,54 @@ const categoryKeys = [
 
 const ProductPage = () => {
   const { t } = useLanguage();
+  const searchParams = useSearchParams();
+  const searchQuery = searchParams.get("search") || "";
   const [selectedCategoryKey, setSelectedCategoryKey] = useState("all");
   const [sortBy, setSortBy] = useState("Featured");
 
-  const filteredProducts =
-    selectedCategoryKey === "all"
-      ? products
-      : products.filter((p) => p.categoryKey === selectedCategoryKey);
+  // Filter by category and search query
+  const filteredAndSortedProducts = useMemo(() => {
+    let result = products;
+
+    // Filter by category
+    if (selectedCategoryKey !== "all") {
+      result = result.filter((p) => p.categoryKey === selectedCategoryKey);
+    }
+
+    // Filter by search query (bilingual)
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      result = result.filter((product) => {
+        const nameEn = translations[product.nameKey]?.en?.toLowerCase() || "";
+        const nameFr = translations[product.nameKey]?.fr?.toLowerCase() || "";
+        const catEn = translations[product.categoryKey]?.en?.toLowerCase() || "";
+        const catFr = translations[product.categoryKey]?.fr?.toLowerCase() || "";
+        return (
+          nameEn.includes(query) ||
+          nameFr.includes(query) ||
+          catEn.includes(query) ||
+          catFr.includes(query)
+        );
+      });
+    }
+
+    // Sort products
+    switch (sortBy) {
+      case "Price: Low to High":
+        result = [...result].sort((a, b) => a.salePrice - b.salePrice);
+        break;
+      case "Price: High to Low":
+        result = [...result].sort((a, b) => b.salePrice - a.salePrice);
+        break;
+      case "Newest":
+        result = [...result].sort((a, b) => b.id - a.id);
+        break;
+      default: // Featured - keep original order
+        break;
+    }
+
+    return result;
+  }, [selectedCategoryKey, searchQuery, sortBy]);
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -223,6 +265,26 @@ const ProductPage = () => {
       {/* Main Content */}
       <section className="bg-white py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-8">
+          {/* Search Results Banner */}
+          {searchQuery && (
+            <motion.div
+              className="flex items-center justify-between bg-[#f5e6e0] rounded-xl px-4 py-3 mb-6"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              <p className="text-gray-700">
+                {t("searchResultsFor")} <span className="font-semibold">"{searchQuery}"</span> ({filteredAndSortedProducts.length} {t("productsCount")})
+              </p>
+              <Link
+                href="/products"
+                className="flex items-center gap-1 text-sm text-[#3d6b59] hover:underline"
+              >
+                <X size={16} />
+                {t("clearSearch")}
+              </Link>
+            </motion.div>
+          )}
+
           {/* Filters Bar */}
           <motion.div
             className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8 pb-6 border-b border-gray-200"
@@ -273,7 +335,7 @@ const ProductPage = () => {
             {/* Sort & Results */}
             <div className="flex items-center gap-4">
               <span className="text-sm text-gray-500">
-                {filteredProducts.length} {t("productsCount")}
+                {filteredAndSortedProducts.length} {t("productsCount")}
               </span>
               <select
                 value={sortBy}
@@ -294,9 +356,9 @@ const ProductPage = () => {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            key={selectedCategoryKey}
+            key={`${selectedCategoryKey}-${searchQuery}-${sortBy}`}
           >
-            {filteredProducts.map((product, index) => (
+            {filteredAndSortedProducts.map((product, index) => (
               <motion.div
                 key={product.id}
                 className="group"

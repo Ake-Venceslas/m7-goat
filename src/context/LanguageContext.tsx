@@ -24,6 +24,8 @@ export const translations: Translations = {
   noProductsFound: { en: "No products found", fr: "Aucun produit trouvé" },
   viewAllProducts: { en: "View all products", fr: "Voir tous les produits" },
   popularSearches: { en: "Popular searches", fr: "Recherches populaires" },
+  searchResultsFor: { en: "Search results for", fr: "Résultats de recherche pour" },
+  clearSearch: { en: "Clear search", fr: "Effacer la recherche" },
 
   // Hero Section
   freeDelivery: { en: "FREE DELIVERY WORLDWIDE", fr: "LIVRAISON GRATUITE DANS LE MONDE" },

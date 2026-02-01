@@ -1,26 +1,16 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { Home, User, ShoppingBag, Search, X, MessageSquare, BookOpen, Globe } from "lucide-react";
-import { useLanguage } from "@/src/context/LanguageContext";
-
-const products = [
-  { id: 1, name: "The Glow Revival Set", category: "Sets" },
-  { id: 2, name: "Blemish Rescue System", category: "Treatment" },
-  { id: 3, name: "Age-Defy Overnight Kit", category: "Sets" },
-  { id: 4, name: "Vitamin C Brightening Serum", category: "Serums" },
-  { id: 5, name: "Hyaluronic Acid Moisturizer", category: "Moisturizers" },
-  { id: 6, name: "Retinol Night Cream", category: "Treatment" },
-  { id: 7, name: "Gentle Foaming Cleanser", category: "Cleansers" },
-  { id: 8, name: "Rose Petal Toner", category: "Toners" },
-];
+import { useLanguage, translations } from "@/src/context/LanguageContext";
+import { products, popularSearchKeys } from "@/src/data/products";
 
 const NavbarComponents = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState<typeof products>([]);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const langRef = useRef<HTMLDivElement>(null);
@@ -37,17 +27,26 @@ const NavbarComponents = () => {
     { href: "/blog", icon: BookOpen, label: t("blogs") },
   ];
 
-  useEffect(() => {
-    if (searchQuery.trim()) {
-      const filtered = products.filter(
-        (product) =>
-          product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          product.category.toLowerCase().includes(searchQuery.toLowerCase())
+  // Bilingual search - searches in both French and English
+  const searchResults = useMemo(() => {
+    if (!searchQuery.trim()) return [];
+    
+    const query = searchQuery.toLowerCase();
+    return products.filter((product) => {
+      // Get product name in both languages
+      const nameEn = translations[product.nameKey]?.en?.toLowerCase() || "";
+      const nameFr = translations[product.nameKey]?.fr?.toLowerCase() || "";
+      // Get category name in both languages
+      const catEn = translations[product.categoryKey]?.en?.toLowerCase() || "";
+      const catFr = translations[product.categoryKey]?.fr?.toLowerCase() || "";
+      
+      return (
+        nameEn.includes(query) ||
+        nameFr.includes(query) ||
+        catEn.includes(query) ||
+        catFr.includes(query)
       );
-      setSearchResults(filtered);
-    } else {
-      setSearchResults([]);
-    }
+    });
   }, [searchQuery]);
 
   useEffect(() => {
@@ -200,21 +199,26 @@ const NavbarComponents = () => {
                       {searchResults.map((product) => (
                         <Link
                           key={product.id}
-                          href={`/products?search=${encodeURIComponent(product.name)}`}
+                          href={`/products?search=${encodeURIComponent(t(product.nameKey))}`}
                           onClick={() => {
                             setIsSearchOpen(false);
                             setSearchQuery("");
                           }}
                           className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors"
                         >
-                          <div className="w-10 h-10 bg-[#f5e6e0] rounded-lg flex items-center justify-center">
-                            <ShoppingBag size={16} className="text-gray-400" />
+                          <div className="w-12 h-12 bg-[#f5e6e0] rounded-lg overflow-hidden relative">
+                            <Image
+                              src={product.image || "/placeholder.png"}
+                              alt={t(product.nameKey)}
+                              fill
+                              className="object-cover"
+                            />
                           </div>
                           <div>
                             <p className="text-sm font-medium text-gray-900">
-                              {product.name}
+                              {t(product.nameKey)}
                             </p>
-                            <p className="text-xs text-gray-500">{product.category}</p>
+                            <p className="text-xs text-gray-500">{t(product.categoryKey)}</p>
                           </div>
                         </Link>
                       ))}
@@ -243,13 +247,13 @@ const NavbarComponents = () => {
                     <div className="border-t border-gray-100 px-4 py-3">
                       <p className="text-xs text-gray-400 mb-2">{t("popularSearches")}</p>
                       <div className="flex flex-wrap gap-2">
-                        {["Serum", "Moisturizer", "Cleanser"].map((term) => (
+                        {popularSearchKeys.map((key) => (
                           <button
-                            key={term}
-                            onClick={() => setSearchQuery(term)}
+                            key={key}
+                            onClick={() => setSearchQuery(t(key))}
                             className="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full hover:bg-gray-200 transition-colors"
                           >
-                            {term}
+                            {t(key)}
                           </button>
                         ))}
                       </div>
