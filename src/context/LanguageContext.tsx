@@ -27,11 +27,11 @@ export const translations: Translations = {
 
   // Hero Section
   freeDelivery: { en: "FREE DELIVERY WORLDWIDE", fr: "LIVRAISON GRATUITE DANS LE MONDE" },
-  heroTitle1: { en: "Love Your Skin,", fr: "Aimez Votre Peau," },
+  heroTitle1: { en: "Love Your Hair,", fr: "Aimez Vos Cheveux," },
   heroTitle2: { en: "Every Day", fr: "Chaque Jour" },
   heroDescription: {
-    en: "Elevate Your Glow with Clean, Science-Backed Skincare— Cruelty-Free, Sustainable, and Packed with Antioxidants for Skin That Looks Healthy at Every Age.",
-    fr: "Sublimez votre éclat avec des soins propres et scientifiquement prouvés — sans cruauté, durables et riches en antioxydants pour une peau saine à tout âge.",
+    en: "Elevate Your Hair with Clean, Science-Backed Hair Care— Cruelty-Free, Sustainable, and Packed with Natural Ingredients for Hair That Looks Healthy and Strong at Every Age.",
+    fr: "Sublimez vos cheveux avec des soins capillaires propres et scientifiquement prouvés — sans cruauté, durables et riches en ingrédients naturels pour des cheveux sains et forts à tout âge.",
   },
   orderNow: { en: "Order Now", fr: "Commander" },
   findOutMore: { en: "Find Out More", fr: "En Savoir Plus" },
@@ -39,16 +39,16 @@ export const translations: Translations = {
   ratings: { en: "ratings", fr: "avis" },
   worldwideProducts: { en: "Worldwide products sold per year.", fr: "Produits vendus par an dans le monde." },
 
-  // Why Our Skincare Section
-  whyTitle: { en: "Why Our Skincare is Good for You – And Your Skin", fr: "Pourquoi Nos Soins Sont Bons Pour Vous – Et Votre Peau" },
+  // Why Our Hair Care Section
+  whyTitle: { en: "Why Our Hair Care is Good for You – And Your Hair", fr: "Pourquoi Nos Soins Capillaires Sont Bons Pour Vous – Et Vos Cheveux" },
   cleanFormulas: { en: "Clean, Science-Backed Formulas", fr: "Formules Propres et Scientifiquement Prouvées" },
-  cleanFormulasDesc: { en: "Every product is crafted with clinically proven ingredients that deliver real results.", fr: "Chaque produit est conçu avec des ingrédients cliniquement prouvés qui donnent de vrais résultats." },
-  dermatologistTested: { en: "Dermatologist-Tested & Skin-Loving", fr: "Testé par des Dermatologues & Doux pour la Peau" },
-  dermatologistTestedDesc: { en: "Whether you have sensitive, acne-prone, or mature skin, our products are designed to soothe irritation, balance oil production, and protect and repair.", fr: "Que vous ayez une peau sensible, à tendance acnéique ou mature, nos produits sont conçus pour apaiser, équilibrer et protéger." },
+  cleanFormulasDesc: { en: "Every product is crafted with clinically proven ingredients that deliver real results for your hair.", fr: "Chaque produit est conçu avec des ingrédients cliniquement prouvés qui donnent de vrais résultats pour vos cheveux." },
+  dermatologistTested: { en: "Expert-Tested & Hair-Loving", fr: "Testé par des Experts & Doux pour les Cheveux" },
+  dermatologistTestedDesc: { en: "Whether you have dry, damaged, or thin hair, our products are designed to nourish, strengthen, and protect.", fr: "Que vous ayez des cheveux secs, abîmés ou fins, nos produits sont conçus pour nourrir, renforcer et protéger." },
   visibleResults: { en: "Visible Results You Can Trust", fr: "Des Résultats Visibles et Fiables" },
-  goodForPlanet: { en: "Good for Your Skin, Good for the Planet", fr: "Bon pour Votre Peau, Bon pour la Planète" },
+  goodForPlanet: { en: "Good for Your Hair, Good for the Planet", fr: "Bon pour Vos Cheveux, Bon pour la Planète" },
   recyclablePackaging: { en: "Recyclable packaging", fr: "Emballage recyclable" },
-  veganCrueltyFree: { en: "Vegan & cruelty-free – Certified by Leaping Bunny", fr: "Végan et sans cruauté – Certifié par Leaping Bunny" },
+  veganCrueltyFree: { en: "Vegan & cruelty-free – Natural ingredients", fr: "Végan et sans cruauté – Ingrédients naturels" },
 
   // Products Section
   ourBestSellers: { en: "Our Best Sellers", fr: "Nos Meilleures Ventes" },
@@ -65,6 +65,42 @@ export const translations: Translations = {
 
   // Reviews Section
   whatCustomersSay: { en: "What our customers have to say...", fr: "Ce que nos clients disent..." },
+  review1: { 
+    en: "I've struggled with dry, brittle hair for years, but this product has changed everything. After just one week, my hair feels soft and shiny—and the results are real! I love that it keeps my hair moisturized all day.", 
+    fr: "J'ai lutté contre des cheveux secs et cassants pendant des années, mais ce produit a tout changé. Après seulement une semaine, mes cheveux sont doux et brillants — et les résultats sont réels ! J'adore qu'il garde mes cheveux hydratés toute la journée." 
+  },
+  review2: { 
+    en: "I was skeptical, but this product truly stopped my hair breakage in under a month. It doesn't dry out my hair like other treatments, and my damaged ends are recovering fast.", 
+    fr: "J'étais sceptique, mais ce produit a vraiment stoppé la casse de mes cheveux en moins d'un mois. Il ne dessèche pas mes cheveux comme les autres traitements, et mes pointes abîmées récupèrent rapidement." 
+  },
+  review3: { 
+    en: "Frizz? Dullness? Gone. This elixir makes my hair look healthier and shinier than it has in years. I've gotten so many compliments and my sister even stole my bottle!", 
+    fr: "Frisottis ? Cheveux ternes ? Disparus. Cet élixir rend mes cheveux plus sains et plus brillants qu'ils ne l'ont été depuis des années. J'ai reçu tellement de compliments et ma sœur m'a même volé mon flacon !" 
+  },
+  review4: { 
+    en: "M7 GOAT products have completely transformed my hair. My curls are now defined, shiny and so soft. I can't recommend them enough!", 
+    fr: "Les produits M7 GOAT ont complètement transformé mes cheveux. Mes boucles sont maintenant définies, brillantes et si douces. Je ne peux que les recommander !" 
+  },
+  review5: { 
+    en: "After years of trying different products, I finally found the one. My hair has never been this strong and healthy. Thank you M7 GOAT!", 
+    fr: "Après des années à essayer différents produits, j'ai enfin trouvé le bon. Mes cheveux n'ont jamais été aussi forts et sains. Merci M7 GOAT !" 
+  },
+  review6: { 
+    en: "The elixir is pure magic! My hair grows faster and the breakage has stopped completely. Best investment for my hair care routine.", 
+    fr: "L'élixir est de la pure magie ! Mes cheveux poussent plus vite et la casse a complètement cessé. Meilleur investissement pour ma routine capillaire." 
+  },
+  review7: { 
+    en: "I was losing hope with my damaged hair, but M7 GOAT brought it back to life. The cream is incredibly nourishing and smells amazing!", 
+    fr: "Je perdais espoir avec mes cheveux abîmés, mais M7 GOAT les a ramenés à la vie. La crème est incroyablement nourrissante et sent divinement bon !" 
+  },
+  review8: { 
+    en: "The complete range is worth every penny. My scalp feels healthier and my hair has so much volume now. Absolutely love it!", 
+    fr: "La gamme complète vaut chaque centime. Mon cuir chevelu est plus sain et mes cheveux ont tellement de volume maintenant. J'adore absolument !" 
+  },
+  review9: { 
+    en: "Natural ingredients that actually work! My hair went from dry and brittle to soft and manageable. M7 GOAT is now my go-to brand.", 
+    fr: "Des ingrédients naturels qui fonctionnent vraiment ! Mes cheveux sont passés de secs et cassants à doux et faciles à coiffer. M7 GOAT est maintenant ma marque préférée." 
+  },
 
   // Footer
   navigation: { en: "Navigation", fr: "Navigation" },

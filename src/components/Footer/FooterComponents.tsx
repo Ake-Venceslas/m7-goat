@@ -55,7 +55,7 @@ const FooterComponents = () => {
             >
               M7 GOAT
             </motion.h3>
-            <p className="text-sm text-white/80 mb-1">Tel: +77 586573843</p>
+            <p className="text-sm text-white/80 mb-1">Tel: +237 654 888 860</p>
             <p className="text-sm text-white/80">Mon Sat 8am-7pm GMT</p>
           </motion.div>
 
@@ -113,7 +113,7 @@ const FooterComponents = () => {
               <li>
                 <motion.div whileHover={{ x: 5 }}>
                   <Link
-                    href="/contact"
+                    href="/"
                     className="text-sm text-white/70 hover:text-white transition-colors"
                   >
                     {t("contact")}
@@ -130,7 +130,7 @@ const FooterComponents = () => {
               <li>
                 <motion.div whileHover={{ x: 5 }}>
                   <Link
-                    href="/privacy"
+                    href="/"
                     className="text-sm text-white/70 hover:text-white transition-colors"
                   >
                     {t("privacyPolicy")}
@@ -140,7 +140,7 @@ const FooterComponents = () => {
               <li>
                 <motion.div whileHover={{ x: 5 }}>
                   <Link
-                    href="/terms"
+                    href="/"
                     className="text-sm text-white/70 hover:text-white transition-colors"
                   >
                     {t("termsConditions")}
@@ -156,7 +156,7 @@ const FooterComponents = () => {
             <div className="flex flex-col gap-3">
               <motion.div whileHover={{ scale: 1.2, rotate: 5 }} whileTap={{ scale: 0.9 }}>
                 <Link
-                  href="https://instagram.com"
+                  href=""
                   className="text-white/70 hover:text-white transition-colors inline-block"
                 >
                   <Instagram size={24} />
@@ -164,7 +164,7 @@ const FooterComponents = () => {
               </motion.div>
               <motion.div whileHover={{ scale: 1.2, rotate: -5 }} whileTap={{ scale: 0.9 }}>
                 <Link
-                  href="https://facebook.com"
+                  href=""
                   className="text-white/70 hover:text-white transition-colors inline-block"
                 >
                   <Facebook size={24} />
@@ -172,7 +172,7 @@ const FooterComponents = () => {
               </motion.div>
               <motion.div whileHover={{ scale: 1.2, rotate: 5 }} whileTap={{ scale: 0.9 }}>
                 <Link
-                  href="https://youtube.com"
+                  href=""
                   className="text-white/70 hover:text-white transition-colors inline-block"
                 >
                   <Youtube size={24} />
