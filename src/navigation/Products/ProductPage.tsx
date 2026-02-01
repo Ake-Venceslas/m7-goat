@@ -161,7 +161,7 @@ const categoryKeys = [
 ];
 
 const ProductPage = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("search") || "";
   const [selectedCategoryKey, setSelectedCategoryKey] = useState("all");
@@ -409,8 +409,10 @@ const ProductPage = () => {
                     {/* Add to Cart Button */}
                     <motion.button 
                       onClick={() => {
-                        const phoneNumber = "237678691969";
-                        const message = `Bonjour M7 GOAT! 🌟\n\nJe suis intéressé(e) par:\n📦 *${t(product.nameKey)}*\n💰 Prix: ${product.salePrice} FCFA\n\nPouvez-vous me donner plus d'informations?\n\nMerci!`;
+                        const phoneNumber = "237654888860";
+                        const message = language === "en" 
+                          ? `Hello M7 GOAT! 🌟\n\nI'm interested in:\n📦 *${t(product.nameKey)}*\n💰 Price: ${product.salePrice} FCFA\n\nCan you give me more information?\n\nThank you!`
+                          : `Bonjour M7 GOAT! 🌟\n\nJe suis intéressé(e) par:\n📦 *${t(product.nameKey)}*\n💰 Prix: ${product.salePrice} FCFA\n\nPouvez-vous me donner plus d'informations?\n\nMerci!`;
                         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                         window.open(whatsappUrl, '_blank');
                       }}

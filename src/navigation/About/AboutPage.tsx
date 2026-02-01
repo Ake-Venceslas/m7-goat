@@ -169,7 +169,7 @@ const AboutPage = () => {
           </p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
-              href="/contact"
+              href="#"
               className="border border-white text-white px-6 py-2 rounded hover:bg-white hover:text-gray-900 transition-colors"
             >
               {t("getInTouch")}
@@ -249,11 +249,12 @@ const AboutPage = () => {
                 whileHover={{ scale: 1.05, rotate: 2 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <Image
-                  src="/product1.jpeg"
-                  alt="Produit 1"
-                  width={200}
-                  height={200}
+                <video
+                  src="/Prodsuit 4.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   className="object-cover w-full h-full"
                 />
               </motion.div>
@@ -263,11 +264,12 @@ const AboutPage = () => {
                 whileHover={{ scale: 1.05, rotate: -2 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <Image
-                  src="/product2.jpeg"
-                  alt="Produit 2"
-                  width={200}
-                  height={200}
+                <video
+                  src="/Produit 5.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   className="object-cover w-full h-full"
                 />
               </motion.div>
@@ -277,11 +279,12 @@ const AboutPage = () => {
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <Image
-                  src="/beauty.jpeg"
-                  alt="Beauté"
-                  width={420}
-                  height={200}
+                <video
+                  src="/Produit 5.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   className="object-cover w-full h-full"
                 />
               </motion.div>
