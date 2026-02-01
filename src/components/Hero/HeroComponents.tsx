@@ -4,12 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, Sparkles, ClipboardCheck, CircleDot, Leaf } from "lucide-react";
 import { useLanguage } from "@/src/context/LanguageContext";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 const HeroComponents = () => {
   const { t } = useLanguage();
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -20,38 +20,38 @@ const HeroComponents = () => {
     },
   };
 
-  const featureVariants = {
+  const featureVariants: Variants = {
     hidden: { opacity: 0, x: 50 },
     visible: {
       opacity: 1,
       x: 0,
       transition: {
         duration: 0.5,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };
 
-  const imageVariants = {
+  const imageVariants: Variants = {
     hidden: { opacity: 0, scale: 0.9 },
     visible: {
       opacity: 1,
       scale: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };
 
-  const circleVariants = {
+  const circleVariants: Variants = {
     hidden: { scale: 0 },
     visible: (i: number) => ({
       scale: 1,
       transition: {
         delay: i * 0.2,
         duration: 0.6,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     }),
   };
@@ -61,7 +61,7 @@ const HeroComponents = () => {
     transition: {
       duration: 3,
       repeat: Infinity,
-      ease: "easeInOut",
+      ease: "easeInOut" as const,
     },
   };
 
